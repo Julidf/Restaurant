@@ -15,8 +15,8 @@ import lombok.Data;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column
     private String code;
@@ -28,56 +28,28 @@ public class Product {
     private String description;
 
     @Column
-    private int price;
+    private Float price;
 
     @Column
-    private int stock;
+    private Integer stock;
 
-    public long getId() {
-        return id;
+    @Column
+    private Boolean isAvailable = true;
+
+    @Column
+    private String image; 
+
+    public Product() {
+
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
+    public Product(String code, String name, String description, Float price, Integer stock, String image) {
         this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
         this.price = price;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
         this.stock = stock;
+        this.image = image;
     }
+
 }

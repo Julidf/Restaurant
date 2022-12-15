@@ -68,6 +68,12 @@
     		<artifactId>jakarta.persistence-api</artifactId>
     		<version>3.1.0</version>
 		</dependency>
+		<!-- Dependencia para el @Transaccional -->
+		<dependency>
+    		<groupId>org.springframework</groupId>
+    		<artifactId>spring-tx</artifactId>
+    		<version>6.0.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

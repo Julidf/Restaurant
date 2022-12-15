@@ -1,12 +1,9 @@
+
 package com.restaurant.models;
 
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-
-import java.util.ArrayList;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,25 +12,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "cart")
-public class Cart {
+@Table(name = "role")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
-    private Long user_id;
+    private String name;
 
-    @ManyToMany
-    private ArrayList<Product> productos = new ArrayList<>();
-
-    public Cart(){
+    public Role(){
 
     }
 
-    public Cart(Long user_id) {
-        this.user_id = user_id;
+    public Role(String name) {
+        this.name = name;
     }
 
 }

@@ -19,7 +19,7 @@ import jakarta.transaction.Transactional;
 // Acá tambien se validan los datos de entrada
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping
 public class ProductController {
 
     private final ProductService productsService;
@@ -29,7 +29,7 @@ public class ProductController {
         this.productsService = productsService;
     }
     
-    @GetMapping
+    @GetMapping("/products")
     public Iterable<Product> getAllProducts() {
         return this.productsService.findAll();
     }

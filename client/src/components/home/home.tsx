@@ -8,20 +8,37 @@ export default function Home(){
     // console.log(arrayData);
      
      
-    const data = async() => {
+    // const data = async() => {
+    //     try {
+    //       const response = await axios.get("http://localhost:8080/products");
+    //       return response.data;
+    //     } catch (error) {
+    //       console.log(error);
+    //     }
+    //   };
+      
+    //   console.log(data());
+
+
+      async function login() {
+        let usuarios: any[] = [];
         try {
-          const response = await axios.get("http://localhost:8080/products");
-          return response.data;
+          const response = await axios.get("http://localhost:8080/api/products");
+          usuarios = response.data;
+          console.log(usuarios)
         } catch (error) {
           console.log(error);
         }
-      };
-      
-      console.log(data());
+      }
+
+    
 
     return(
         <div>
             <p>hola</p>
+            <button onClick={login}>
+            Click Me!
+            </button>
         </div>
     )
  

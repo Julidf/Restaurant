@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import Card from "./card";
 
 export default function Home() {
   const [state, setState] = useState<any[]>([]);
@@ -15,9 +16,9 @@ export default function Home() {
 
   return (
     <div>
-      <ul>
-        {!state ? "loading..." : state.map((e) => <li key={e.id}>{e.name}</li>)}
-      </ul>
+      {!state
+        ? "loading..."
+        : state.map((product) => <Card key={product.id} {...product} />)}
     </div>
   );
 }

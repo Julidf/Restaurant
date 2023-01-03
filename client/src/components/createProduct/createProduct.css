@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__label {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem 0;
+}
+
+.form__input {
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+}
+
+.form__error {
+  margin: 0.5rem 0;
+  color: orangered;
+}
+
+.btn {
+  margin: 1rem 0;
+  padding: 0.5rem 0;
+  background-color: darkseagreen;
+}

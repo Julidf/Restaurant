@@ -26,7 +26,7 @@ public class User {
     private Role role;
 
     @Column
-    private String userName;
+    private String username;
 
     @Column
     private String password;
@@ -47,9 +47,9 @@ public class User {
         
     }
 
-    public User(Role role, String userName, String password, String firstName, String lastName, String email) {
+    public User(Role role, String username, String password, String firstName, String lastName, String email) {
         this.role = role;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;

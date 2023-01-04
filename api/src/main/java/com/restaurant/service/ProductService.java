@@ -36,10 +36,13 @@ public class ProductService {
         return this.productsRepository.findAll();
     }
     
+    //Trae el producto segun su id
     public Optional<Product> findById(Long id) {
         return this.productsRepository.findById(id);
     }
     
+    //USAR AUTOMAPPER
+
     //Se fija que el producto no exista, y en caso de que no exista, lo crea y lo guarda
     public void save(Long id, String code, String name, String description, Float price, Integer stock, String image) throws RuntimeException {
         Optional<Product> product = this.productsRepository.findById(id);
@@ -53,9 +56,16 @@ public class ProductService {
     
     //Si no encuentra el producto ignora el delete
     public void deleteById(Long id) {
-        Optional<Product> product = this.findById(id);
-        product.get().setIsAvailable(false);
+        this.productsRepository.deleteById(id);
     }
+
+    // public void deleteById(Long id) {
+    //     Optional<Product> product = this.findById(id);
+        
+    //     if (!product.isPresent()) {
+    //         product.get().setIsAvailable(false);
+    //     }
+    // }
     
     public void updateWithPutById(Long id){
         Product product = this.verifyProduct(id);

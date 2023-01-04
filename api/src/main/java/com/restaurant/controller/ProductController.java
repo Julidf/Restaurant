@@ -15,11 +15,11 @@ import jakarta.transaction.Transactional;
 
 // Aca se hacen los http methods (get, put, post and delete methods) con sus endpoints.
 // Hacen referencia a los metodos del service (previamente habiendo inyectado la dependencia)
-
 // Acá tambien se validan los datos de entrada
 
 @RestController
-@RequestMapping
+@RequestMapping("/products")
+@CrossOrigin
 public class ProductController {
 
     private final ProductService productsService;
@@ -29,12 +29,12 @@ public class ProductController {
         this.productsService = productsService;
     }
     
-    @GetMapping("/products")
+    @GetMapping
     public Iterable<Product> getAllProducts() {
         return this.productsService.findAll();
     }
     
-    @GetMapping("/products/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable Long id) {
         if (id < 0 || id == null) {
             return ResponseEntity.badRequest().build();
@@ -47,42 +47,35 @@ public class ProductController {
         }
     }
     
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @Transactional
-    public void saveProduct(String code, String name, String description, Float price, Integer stock) {
-        //this.productsService.save(code, name, description, price, stock);
-    }
+    // @PostMapping
+    // @ResponseStatus(HttpStatus.CREATED)
+    // public void saveProduct(String code, String name, String description, Float price, Integer stock, String image) {
+    //     this.productsService.save(code, name, description, price, stock, image);
+    // }
 
-    @PostMapping("/products")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional
     public void saveProduct2(@RequestBody ProductDto productDto) {
         this.productsService.save(productDto.getId(), productDto.getCode(), productDto.getName(), productDto.getDescription(), productDto.getPrice(), productDto.getStock(), productDto.getImage());
     }
-    
-    // @DeleteMapping(path = "/{productId}")
-    // @ResponseStatus(HttpStatus.OK)
-    // public void deleteProductById(@PathVariable("productId") Long id) {
-    //     this.productsService.deleteById(id);
-    // }
 
-    @PutMapping(path = "/{productId}")
+    @DeleteMapping(path = "/{productId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProductById(@PathVariable("productId") Long id) {
         this.productsService.deleteById(id);
     }
     
-    @PutMapping("/{id}")
-    @Transactional
-    public void updateProductWithPutById() {
+    // @PutMapping("/{id}")
+    // @Transactional
+    // public void updateProductWithPutById() {
     
-    }
+    // }
     
-    @PatchMapping
-    @Transactional
-    public void updateWithPatchById() {
+    // @PatchMapping
+    // @Transactional
+    // public void updateWithPatchById() {
     
-    }
+    // }
 
 }

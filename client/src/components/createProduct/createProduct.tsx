@@ -3,6 +3,7 @@ import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import validation from "./validation";
+import { miApi } from "../../react-app-env";
 
 
 export default function CreateProduct() {
@@ -15,7 +16,7 @@ export default function CreateProduct() {
   });
 
   const postProduct = async () => {
-    await axios.post("http://localhost:8080/api/products", product);
+    await axios.post(`${miApi}/products`, product);
   };
 
   function submitButtonHandler(values: any) {
@@ -35,7 +36,7 @@ export default function CreateProduct() {
         <Form className="form" onSubmit={handleSubmit}>
           <label htmlFor="name" className="form__label">
             Name:
-            <input
+            <Field
               type="text"
               name="name"
               placeholder="insert name"

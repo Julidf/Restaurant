@@ -7,13 +7,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@ComponentScan({ "com.restaurant", "com.restaurant.config" })
-@SpringBootApplication(scanBasePackages = { "com.restaurant", "com.restaurant.something" })
+//@ComponentScan({ "com.restaurant", "com.restaurant.config" })
+@SpringBootApplication
+//(scanBasePackages = { "com.restaurant", "com.restaurant.something" })
 
 public class RestaurantApplication {
 
 	public static void main(String[] args) {
-		
 		SpringApplication.run(RestaurantApplication.class, args);
 	}
 

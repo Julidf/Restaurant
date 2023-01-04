@@ -7,27 +7,25 @@ const miApi: string = (process.env.REACT_APP_miApi as string);
 
 
 export default function CreateProduct() {
-  const [product, setProduct] = useState({
-    name: "",
-    description: "",
-    price: 0,
-    stock: 0,
-    image: "",
-  });
 
-  const postProduct = async () => {
+  const postProduct = async (product: any) => {
     await axios.post(`${miApi}/products`, product);
   };
 
   function submitButtonHandler(values: any) {
     Swal.fire(JSON.stringify(values));
-    setProduct(values);
-    postProduct();
+    postProduct(values);
   }
 
   return (
     <Formik
-      initialValues={product}
+      initialValues={{
+        name: "",
+        description: "",
+        price: 0,
+        stock: 0,
+        image: "",
+      }}
       onSubmit={(values) => submitButtonHandler(values)}
       validationSchema={validation}
     >

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Landing from './components/landing/landing'
+import Landing from './components/landing/Landing'
 import Home from './components/home/home'
 import {Route, Routes} from 'react-router-dom';
 import CreateProduct from './components/createProduct/createProduct';

@@ -22,12 +22,8 @@ public class Role {
     @Column
     private String name;
 
-    public Role(){
+    @Column
+    private String description;
 
-    }
-
-    public Role(String name) {
-        this.name = name;
-    }
 
 }

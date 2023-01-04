@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import validation from "./validation";
 const miApi: string = (process.env.REACT_APP_miApi as string);
 
+interface Product {
+  name: string,
+  description: string,
+  price: number,
+  stock: number,
+  image: string
+}
 
 export default function CreateProduct() {
 
@@ -13,23 +20,25 @@ export default function CreateProduct() {
   };
 
   function submitButtonHandler(values: any) {
-    Swal.fire(JSON.stringify(values));
+    Swal.fire({icon: 'success',
+            title: "Product created! "});
     postProduct(values);
   }
-
+  
+  const initialValues: Product ={
+    name: "",
+    description: "",
+    price: 0,
+    stock: 0,
+    image: "",
+  }
   return (
     <Formik
-      initialValues={{
-        name: "",
-        description: "",
-        price: 0,
-        stock: 0,
-        image: "",
-      }}
+      initialValues={initialValues}
       onSubmit={(values) => submitButtonHandler(values)}
       validationSchema={validation}
     >
-      {({ handleSubmit, values, handleChange }) => (
+      {({ handleSubmit, values, handleChange, validateOnChange }) => (
         <Form className="form" onSubmit={handleSubmit}>
           <label htmlFor="name" className="form__label">
             Name:
@@ -40,6 +49,7 @@ export default function CreateProduct() {
               className="form__input"
               value={values.name}
               onChange={handleChange}
+              validate={validateOnChange}
             />
             <ErrorMessage
               name="name"
@@ -75,6 +85,7 @@ export default function CreateProduct() {
               className="form__input"
               value={values.price}
               onChange={handleChange}
+              validate={validateOnChange}
             />
             <ErrorMessage
               name="price"

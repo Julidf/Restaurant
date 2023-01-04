@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-interface Props {
+export interface Props {
   id: number;
   name: string;
   description: string;

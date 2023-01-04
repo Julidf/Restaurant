@@ -3,7 +3,7 @@ import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import validation from "./validation";
-import { miApi } from "../../react-app-env";
+const miApi: string = (process.env.REACT_APP_miApi as string);
 
 
 export default function CreateProduct() {

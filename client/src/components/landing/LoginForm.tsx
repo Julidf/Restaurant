@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import  './LoginForm.css';
+const miApi: string = (process.env.REACT_APP_miApi as string);
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -12,7 +12,7 @@ export default function LoginForm() {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8080/api/login", { username, password });
+      const response = await axios.post(`${miApi}/login`, { username, password });
       localStorage.setItem('token', response.data.token);
       window.location.href = '/';
     } catch (e: any) {

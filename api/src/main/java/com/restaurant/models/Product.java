@@ -3,6 +3,9 @@ package com.restaurant.models;
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+
+import com.restaurant.controller.ProductDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,9 +20,6 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column
-    private String code;
 
     @Column
     private String name;
@@ -43,13 +43,23 @@ public class Product {
 
     }
 
-    public Product(String code, String name, String description, Float price, Integer stock, String image) {
-        this.code = code;
+    public Product(String name, String description, Float price, Integer stock, String image) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
         this.image = image;
     }
+
+    public static Product fromDto(ProductDto dto) {
+        Product product = new Product();
+        product.setName(dto.getName());
+        product.setDescription(dto.getDescription());
+        product.setPrice(dto.getPrice());
+        product.setStock(dto.getStock());
+        product.setImage(dto.getImage());
+        return product;
+    }
+
 
 }

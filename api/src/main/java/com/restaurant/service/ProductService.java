@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.restaurant.controller.ProductDto;
 import com.restaurant.models.Product;
 import com.restaurant.repository.ProductRepo;
 
@@ -40,18 +41,9 @@ public class ProductService {
     public Optional<Product> findById(Long id) {
         return this.productsRepository.findById(id);
     }
-    
-    //USAR AUTOMAPPER
 
-    //Se fija que el producto no exista, y en caso de que no exista, lo crea y lo guarda
-    public void save(Long id, String code, String name, String description, Float price, Integer stock, String image) throws RuntimeException {
-        Optional<Product> product = this.productsRepository.findById(id);
-    
-        if (!product.isPresent()) {
-            this.productsRepository.save(new Product(code, name, description, price, stock, image));
-        } else {
-            throw new EntityExistsException("The product with the id: " + id + " already exists");
-        }
+    public Product saveProduct(Product product) {
+        return this.productsRepository.save(product);
     }
     
     //Si no encuentra el producto ignora el delete

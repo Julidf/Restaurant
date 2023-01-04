@@ -46,18 +46,12 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
-    
-    // @PostMapping
-    // @ResponseStatus(HttpStatus.CREATED)
-    // public void saveProduct(String code, String name, String description, Float price, Integer stock, String image) {
-    //     this.productsService.save(code, name, description, price, stock, image);
-    // }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @Transactional
-    public void saveProduct2(@RequestBody ProductDto productDto) {
-        this.productsService.save(productDto.getId(), productDto.getCode(), productDto.getName(), productDto.getDescription(), productDto.getPrice(), productDto.getStock(), productDto.getImage());
+    public ResponseEntity<Product> saveProduct(@RequestBody ProductDto productDto) {
+        Product product = Product.fromDto(productDto);
+        this.productsService.saveProduct(product);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping(path = "/{productId}")

@@ -22,7 +22,6 @@ export default function CreateProduct() {
   function submitButtonHandler(values: any) {
     Swal.fire(JSON.stringify(values));
     setProduct(values);
-    console.log(product);
     postProduct();
   }
 

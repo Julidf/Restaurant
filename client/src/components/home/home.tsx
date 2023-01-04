@@ -3,15 +3,16 @@ import axios from "axios";
 import Card from "./card";
 
 export default function Home() {
+  
   const [state, setState] = useState<any[]>([]);
-
-  const fetchApi = async () => {
+  
+  const getApi = async () => {
     const response = await axios.get("http://localhost:8080/api/products");
     setState(response.data);
   };
 
   useEffect(() => {
-    fetchApi();
+    getApi();
   }, []);
 
   return (
@@ -22,4 +23,6 @@ export default function Home() {
     </div>
   );
 }
+
+
 

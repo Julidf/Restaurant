@@ -1,0 +1,18 @@
+.container{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height:280px;
+    border-radius:5px;
+    box-shadow: 0 0 10px #000;
+}
+
+.imgContainer{
+    border: none;
+}
+
+.productInfo{
+    border: none;
+}

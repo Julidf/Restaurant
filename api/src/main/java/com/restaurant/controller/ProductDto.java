@@ -9,7 +9,7 @@ public class ProductDto {
     private String description;
     private Float price;
     private Integer stock;
-    private String image; 
+    private String image;
 
 
 }

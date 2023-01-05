@@ -11,13 +11,13 @@ export interface Props {
 
 export default function Card({ id, name, description, price, stock, image }:Props) {
   return (
-    <div className="container">
-      <div className="imgContainer">
+    <div className="product__container">
+      <div className="img__container">
         <Link to={`/products/${id}`}>
-          <img className="imgContainer" src={image} alt={name} />
+          <img className="img__container" src={image} alt={name} />
         </Link>
       </div>
-      <div className="productInfo">
+      <div className="product__info">
         <h3>{name}</h3>
         <p>{description}</p>
       </div>

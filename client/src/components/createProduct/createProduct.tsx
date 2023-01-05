@@ -1,37 +1,40 @@
-import React from "react";
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import validation from "./validation";
-const miApi: string = (process.env.REACT_APP_miApi as string);
-
-interface Product {
-  name: string,
-  description: string,
-  price: number,
-  stock: number,
-  image: string
-}
+import Product from "./iProduct";
+const miApi: string = process.env.REACT_APP_miApi as string;
 
 export default function CreateProduct() {
-
-  const postProduct = async (product: any) => {
+  const postProduct = async (product: Product) => {
     await axios.post(`${miApi}/products`, product);
   };
 
-  function submitButtonHandler(values: any) {
-    Swal.fire({icon: 'success',
-            title: "Product created! "});
-    postProduct(values);
+  async function submitButtonHandler(values: Product) {
+    try {
+      await postProduct(values);
+      Swal.fire({
+        icon: "success",
+        title: "Product created! ",
+        text: values.name + "added to the list.",
+      });
+    } catch(error) {
+      console.log(error)
+      Swal.fire({
+        icon: "error",
+        title: "Oops! ",
+        text: "Something went wrong, please try again",
+      });
+    }
   }
-  
-  const initialValues: Product ={
+
+  const initialValues: Product = {
     name: "",
     description: "",
     price: 0,
     stock: 0,
     image: "",
-  }
+  };
   return (
     <Formik
       initialValues={initialValues}
@@ -45,7 +48,7 @@ export default function CreateProduct() {
             <Field
               type="text"
               name="name"
-              placeholder="insert name"
+              placeholder="Insert name"
               className="form__input"
               value={values.name}
               onChange={handleChange}
@@ -63,7 +66,7 @@ export default function CreateProduct() {
             <Field
               type="text"
               name="description"
-              placeholder="insert description"
+              placeholder="Insert description"
               className="form__input"
               value={values.description}
               onChange={handleChange}
@@ -81,9 +84,9 @@ export default function CreateProduct() {
               type="number"
               step="0.01"
               name="price"
-              placeholder="insert price"
+              placeholder="Insert price"
               className="form__input"
-              value={values.price}
+              value={values.price === 0 ? "" : values.price}
               onChange={handleChange}
               validate={validateOnChange}
             />
@@ -99,9 +102,9 @@ export default function CreateProduct() {
             <Field
               type="number"
               name="stock"
-              placeholder="insert stock"
+              placeholder="Insert stock"
               className="form__input"
-              value={values.stock}
+              value={values.stock === 0 ? "" : values.stock}
               onChange={handleChange}
             />
             <ErrorMessage
@@ -116,7 +119,7 @@ export default function CreateProduct() {
             <Field
               type="text"
               name="image"
-              placeholder="insert image"
+              placeholder="Insert image"
               className="form__input"
               value={values.image}
               onChange={handleChange}
@@ -128,7 +131,9 @@ export default function CreateProduct() {
             />
           </label>
 
-          <button type="submit" className="btn">Create</button>
+          <button type="submit" className="btn">
+            Create
+          </button>
         </Form>
       )}
     </Formik>

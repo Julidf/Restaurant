@@ -23,9 +23,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    // @PostMapping
-    // public ResponseEntity<User> login(@RequestBody LoginDto loginDto) {
-            
-    // }
+    @PostMapping
+    public ResponseEntity<User> login(@RequestBody LoginDto loginDto) {
+        User user = new User(loginDto.getUsername(), loginDto.getPassword());
+        return ResponseEntity.ok(user);
+    }
 
 }

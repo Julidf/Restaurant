@@ -57,4 +57,9 @@ public class User {
         this.cart = new Cart(this.id);
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
 }

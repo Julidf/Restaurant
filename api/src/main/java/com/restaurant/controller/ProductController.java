@@ -12,6 +12,7 @@ import com.restaurant.models.Product;
 import com.restaurant.service.ProductService;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;  
 
 // Aca se hacen los http methods (get, put, post and delete methods) con sus endpoints.
 // Hacen referencia a los metodos del service (previamente habiendo inyectado la dependencia)
@@ -48,11 +49,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Product> saveProduct(@RequestBody ProductDto productDto) {
-        boolean validProduct = this.productsService.validateProduct(productDto);
-        if (!validProduct) {
-            return ResponseEntity.badRequest().build();
-        }
+    public ResponseEntity<Product> saveProduct(@Valid @RequestBody ProductDto productDto) {
         Product product = Product.fromDto(productDto);
         this.productsService.saveProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();

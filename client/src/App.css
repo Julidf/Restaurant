@@ -48,13 +48,14 @@
 
 .product__container{
   display:flex;
-  flex-direction:column;
+  flex-direction:row;
   justify-content: center;
   align-items: center;
   width: 300px;
   height:280px;
   border-radius:5px;
   box-shadow: 0 0 10px #000;
+  gap:10px;
 }
 
 .img__container{

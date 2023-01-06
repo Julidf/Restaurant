@@ -19,6 +19,13 @@
 .env.production.local
 .env
 
+### IntelliJ IDEA y VSCODE ###
+.vscode
+.idea
+*.iws
+*.iml
+*.ipr
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

@@ -39,12 +39,10 @@
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-core</artifactId>
 		</dependency>
-
 		<dependency>
   			<groupId>org.springframework</groupId>
   			<artifactId>spring-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
@@ -65,17 +63,28 @@
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Dependencia para el ORM -->
 		<dependency>
     		<groupId>jakarta.persistence</groupId>
     		<artifactId>jakarta.persistence-api</artifactId>
     		<version>3.1.0</version>
 		</dependency>
+
 		<!-- Dependencia para el @Transaccional -->
 		<dependency>
     		<groupId>org.springframework</groupId>
     		<artifactId>spring-tx</artifactId>
     		<version>6.0.2</version>
 		</dependency>
+
+		<!-- Dependencia para las validaciones -->
+		<dependency>
+   			<groupId>org.hibernate.validator</groupId>
+   			<artifactId>hibernate-validator</artifactId>
+   			<version>8.0.0.Final</version>
+		</dependency>
+
 
 		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>

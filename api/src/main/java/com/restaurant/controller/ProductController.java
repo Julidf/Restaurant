@@ -34,8 +34,8 @@ public class ProductController {
         return this.productsService.findAll();
     }
     
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Product> getProduct(@PathVariable("id") Long id) {
         if (id < 0 || id == null) {
             return ResponseEntity.badRequest().build();
         }
@@ -49,6 +49,10 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> saveProduct(@RequestBody ProductDto productDto) {
+        boolean validProduct = this.productsService.validateProduct(productDto);
+        if (!validProduct) {
+            return ResponseEntity.badRequest().build();
+        }
         Product product = Product.fromDto(productDto);
         this.productsService.saveProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -60,16 +64,10 @@ public class ProductController {
         this.productsService.deleteById(id);
     }
     
-    // @PutMapping("/{id}")
-    // @Transactional
-    // public void updateProductWithPutById() {
-    
-    // }
-    
-    // @PatchMapping
-    // @Transactional
-    // public void updateWithPatchById() {
-    
-    // }
+    @PatchMapping(path = "/{productId}")
+    @Transactional
+    public void updateWithPatchById(@PathVariable("productId") Long id) {
+        
+    }
 
 }

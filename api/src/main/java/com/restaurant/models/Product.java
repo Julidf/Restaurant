@@ -39,6 +39,8 @@ public class Product {
     @Column
     private String image; 
 
+    // Si modifico los atributos del product tengo que tambien modificar: el constructor, el mappeo y las validaciones
+
     public Product() {
 
     }
@@ -51,6 +53,7 @@ public class Product {
         this.image = image;
     }
 
+    //Mapping a Product from a ProductDto
     public static Product fromDto(ProductDto dto) {
         Product product = new Product();
         product.setName(dto.getName());

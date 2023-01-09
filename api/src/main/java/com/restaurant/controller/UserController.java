@@ -13,7 +13,6 @@ import com.restaurant.service.UserService;
 
 @RestController
 @RequestMapping("/login")
-@CrossOrigin
 public class UserController {
 
     private final UserService userService;

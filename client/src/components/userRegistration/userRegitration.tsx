@@ -11,7 +11,7 @@ export default function UserRegistration() {
   const createUser = async (user: User) => {
     await axios.post(`/api/register`, user);
   };
-  
+
   async function submitButtonHandler(values: User) {
     try {
       await createUser(values);

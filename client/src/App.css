@@ -29,39 +29,39 @@
   background-color: darkseagreen;
 }
 
-.nav__container{
+.nav__container {
   box-sizing: border-box;
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   margin: 20px;
 }
 
-.nav__buttons{
+.nav__buttons {
   font-size: 1rem;
 }
 
-.nav__btn{
-  gap:5px;
-  padding:20px;
+.nav__btn {
+  gap: 5px;
+  padding: 20px;
 }
 
-.product__container{
-  display:flex;
-  flex-direction:row;
+.product__container {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 300px;
-  height:280px;
-  border-radius:5px;
+  height: 280px;
+  border-radius: 5px;
   box-shadow: 0 0 10px #000;
-  gap:10px;
+  gap: 10px;
 }
 
-.img__container{
+.img__container {
   border: none;
 }
 
-.product__info{
+.product__info {
   border: none;
 }

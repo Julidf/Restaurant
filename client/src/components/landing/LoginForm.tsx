@@ -1,17 +1,17 @@
-import axios from 'axios';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
-import { useNavigate } from 'react-router-dom'
-import Swal from 'sweetalert2';
-import User from './IUser';
+import axios from "axios";
+import { Formik, Form, ErrorMessage, Field } from "formik";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import User from "./IUser";
 import validation from "./validation";
 
 export default function LoginForm() {
   let navigate = useNavigate();
-  
+
   const handleSubmit = async (values: User) => {
     try {
       const response = await axios.post(`/api/login`, values);
-      localStorage.setItem('token', response.data.token);
+      localStorage.setItem("token", response.data.token);
       navigate("/home");
     } catch (e: any) {
       Swal.fire({
@@ -19,7 +19,7 @@ export default function LoginForm() {
         title: "Oops! ",
         text: "Something went wrong, please try again",
       });
-      console.log("ERROR ERROR ERROR !!!")
+      console.log("ERROR ERROR ERROR !!!");
     }
   };
 
@@ -36,7 +36,6 @@ export default function LoginForm() {
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (
         <Form className="form" onSubmit={handleSubmit}>
-
           <label htmlFor="email" className="form__label">
             Email:
             <Field
@@ -81,4 +80,3 @@ export default function LoginForm() {
     </Formik>
   );
 }
-

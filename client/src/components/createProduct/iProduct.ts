@@ -1,7 +1,7 @@
 export default interface Product {
-    name: string;
-    description: string;
-    price: number;
-    stock: number;
-    image: string;
-  }
+  name: string;
+  description: string;
+  price: number;
+  stock: number;
+  image: string;
+}

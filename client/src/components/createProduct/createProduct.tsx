@@ -17,8 +17,8 @@ export default function CreateProduct() {
         title: "Product created! ",
         text: values.name + "added to the list.",
       });
-    } catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
       Swal.fire({
         icon: "error",
         title: "Oops! ",

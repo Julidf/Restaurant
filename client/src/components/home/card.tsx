@@ -9,7 +9,14 @@ export interface Props {
   image: string;
 }
 
-export default function Card({ id, name, description, price, stock, image }:Props) {
+export default function Card({
+  id,
+  name,
+  description,
+  price,
+  stock,
+  image,
+}: Props) {
   return (
     <div className="product__container">
       <div className="img__container">

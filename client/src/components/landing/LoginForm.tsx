@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import User from './IUser';
 import validation from "./validation";
 
-
 export default function LoginForm() {
   let navigate = useNavigate();
   

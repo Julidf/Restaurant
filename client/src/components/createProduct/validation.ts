@@ -7,5 +7,5 @@ export default yup.object().shape({
   description: yup.string().required().max(255),
   price: yup.number().required(isRequiredMessage).min(0),
   stock: yup.number().required(isRequiredMessage).min(0),
-  image: yup.string().required(isRequiredMessage).url().min(1),
+  image: yup.string().required(isRequiredMessage).min(1), //.url
 });

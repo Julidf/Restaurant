@@ -1,4 +1,4 @@
-package com.restaurant.controller;
+package com.restaurant.DTOs;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -21,9 +21,11 @@ public class ProductDto {
     private String description;
 
     @Min(0)
+    @NotNull(message = "THE PRICE MUST NOT BE NULL")
     private Float price;
 
     @Min(0)
+    @NotNull(message = "THE STOCK MUST NOT BE NULL")
     private Integer stock;
 
     @NotNull(message = "THE IMAGE MUST NOT BE NULL") 

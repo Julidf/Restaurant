@@ -1,29 +1,8 @@
 
 package com.restaurant.models;
 
-import jakarta.persistence.Table;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+public enum Role {
 
-import lombok.Data;
-
-@Data
-@Entity
-@Table(name = "role")
-public class Role {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
-    private String name;
-
-    @Column
-    private String description;
-
+    USER, ADMIN
 
 }

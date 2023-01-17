@@ -1,58 +1,63 @@
 import axios from 'axios';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
-//import React, { useState } from 'react';
-import  './LoginForm.css';
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2';
 import User from './IUser';
 import validation from "./validation";
-const miApi: string = (process.env.REACT_APP_miApi as string);
+
 
 export default function LoginForm() {
-
+  let navigate = useNavigate();
+  
   const handleSubmit = async (values: User) => {
     try {
-      const response = await axios.post(`${miApi}/login`, values);
+      const response = await axios.post(`/api/login`, values);
       localStorage.setItem('token', response.data.token);
-      window.location.href = '/home';
+      navigate("/home");
     } catch (e: any) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops! ",
+        text: "Something went wrong, please try again",
+      });
       console.log("ERROR ERROR ERROR !!!")
     }
   };
 
   const initialValues: User = {
-    username: "",
+    email: "",
     password: "",
-
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => handleSubmit(values)}
+      onSubmit={(values: User) => handleSubmit(values)}
       validationSchema={validation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (
         <Form className="form" onSubmit={handleSubmit}>
 
-          <label htmlFor="username" className="form__label">
-            Name:
+          <label htmlFor="email" className="form__label">
+            Email:
             <Field
-              type="text"
-              name="username"
-              placeholder="Insert username"
+              type="email"
+              name="email"
+              placeholder="Insert email"
               className="form__input"
-              value={values.username}
+              value={values.email}
               onChange={handleChange}
               validate={validateOnChange}
             />
             <ErrorMessage
-              name="name"
+              name="email"
               component="span"
               className="form__error"
             />
           </label>
 
           <label htmlFor="password" className="form__label">
-            Name:
+            Password:
             <Field
               type="password"
               name="password"

@@ -4,7 +4,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import com.restaurant.controller.ProductDto;
+import com.restaurant.DTOs.ProductDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;

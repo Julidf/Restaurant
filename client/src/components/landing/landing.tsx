@@ -1,6 +1,4 @@
-import React from 'react';
-import LoginForm from './LoginForm';
-import './landing.css'
+import LoginForm from './loginForm';
 const miApi: string = (process.env.REACT_APP_miApi as string);
 
 export default function Landing(){

@@ -7,12 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.restaurant.controller.ProductDto;
 import com.restaurant.models.Product;
 import com.restaurant.repository.ProductRepo;
-
-//Acá es donde se pone la logica previa de los CRUD antes de crear o borrar entidades.
-//Hacen referencia a los metodos del repository (previamente habiendo inyectado la dependencia)
 
 @Service
 public class ProductService {
@@ -24,7 +20,6 @@ public class ProductService {
         this.productsRepository = productsRepository;
     }
     
-    //Verifica que exista el producto en la BD; si no existe tira excepcion
     public Product verifyProduct(Long id) throws NoSuchElementException {
         return this.productsRepository.findById(id).orElseThrow(() -> new NoSuchElementException("The product with the id: " + id + " don't exists"));
     }
@@ -56,7 +51,7 @@ public class ProductService {
     }
     
     public void updateWithPatchById(Long id){
-        Product product = this.verifyProduct(id);
+        //Product product = this.verifyProduct(id);
     }
  
 

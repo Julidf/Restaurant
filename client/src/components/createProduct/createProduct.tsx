@@ -3,11 +3,10 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import validation from "./validation";
 import Product from "./iProduct";
-const miApi: string = process.env.REACT_APP_miApi as string;
 
 export default function CreateProduct() {
   const postProduct = async (product: Product) => {
-    await axios.post(`${miApi}/products`, product);
+    await axios.post(`/api/products`, product);
   };
 
   async function submitButtonHandler(values: Product) {

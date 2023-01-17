@@ -63,67 +63,49 @@
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Dependencia para el ORM -->
 		<dependency>
     		<groupId>jakarta.persistence</groupId>
     		<artifactId>jakarta.persistence-api</artifactId>
     		<version>3.1.0</version>
 		</dependency>
-
-		<!-- Dependencia para el @Transaccional -->
 		<dependency>
     		<groupId>org.springframework</groupId>
     		<artifactId>spring-tx</artifactId>
     		<version>6.0.2</version>
 		</dependency>
-
-		<!-- Dependencia para las validaciones -->
 		<dependency>
    			<groupId>org.hibernate.validator</groupId>
    			<artifactId>hibernate-validator</artifactId>
    			<version>8.0.0.Final</version>
 		</dependency>
-
-
 		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>  -->
-		<!-- <dependency>
-    		<groupId>com.auth0</groupId>
-    		<artifactId>java-jwt</artifactId>
-    		<version>4.2.1</version> 
-		</dependency>-->
-		<!-- <dependency>
+		<dependency>
+    		<groupId>io.jsonwebtoken</groupId>
+    		<artifactId>jjwt-api</artifactId>
+    		<version>0.11.5</version>
+		</dependency>
+		<dependency>
+    		<groupId>io.jsonwebtoken</groupId>
+    		<artifactId>jjwt-impl</artifactId>
+    		<version>0.11.5</version>
+    		<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
-
-
+		</dependency>
  </dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.asciidoctor</groupId>
-				<artifactId>asciidoctor-maven-plugin</artifactId>
-				<version>2.2.1</version>
-				<executions>
-					<execution>
-						<id>output-html</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>process-asciidoc</goal>
-						</goals>
-						<configuration>
-							<sourceDirectory>src/main/doc</sourceDirectory>
-							<outputDirectory>target/docs</outputDirectory>
-							<backend>html</backend>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

@@ -45,7 +45,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> saveProduct(@Valid @RequestBody ProductDto productDto) {
-        Product product = Product.fromDto(productDto);
+        Product product = this.productsService.mappingFromDto(productDto);
         this.productsService.saveProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

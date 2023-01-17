@@ -14,16 +14,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
 @AllArgsConstructor
 @Data
-@Builder
 @Entity
 @Table(name = "client")
 public class User implements UserDetails {
@@ -32,38 +31,35 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    @Column
-    private String password;
-
     @Column
     private String firstName;
-
+    
     @Column
     private String lastName;
-
+    
     @Column
     private String email;
+
+    @Column
+    private String password; 
+    
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToOne
     private Cart cart;
 
-    public User(){}
-
-    public User(String password, String firstName, String lastName, String email) {
-        this.role = Role.USER;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    // Si modifico los atributos del User tengo que tambien modificar: el constructor, el mappeo y las validaciones
+    
+    public User(){
+        this.role = Role.ADMIN;
         this.cart = new Cart(this.id);
     }
-
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("USER"));
+        String role = this.getRole().getRole();
+        return List.of(new SimpleGrantedAuthority(role));
     }
 
     @Override
@@ -95,5 +91,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 
 }

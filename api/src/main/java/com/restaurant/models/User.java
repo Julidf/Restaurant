@@ -2,31 +2,39 @@ package com.restaurant.models;
 
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
+@AllArgsConstructor
 @Data
+@Builder
 @Entity
 @Table(name = "client")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @Enumerated(EnumType.STRING)
     private Role role;
-
-    @Column
-    private String username;
 
     @Column
     private String password;
@@ -43,13 +51,10 @@ public class User {
     @OneToOne
     private Cart cart;
 
-    public User(){
-        
-    }
+    public User(){}
 
-    public User(Role role, String username, String password, String firstName, String lastName, String email) {
-        this.role = role;
-        this.username = username;
+    public User(String password, String firstName, String lastName, String email) {
+        this.role = Role.USER;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -57,9 +62,39 @@ public class User {
         this.cart = new Cart(this.id);
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("USER"));
+    }
+
+    @Override
+    public String getPassword() {
+      return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+      return this.email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
 }

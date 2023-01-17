@@ -7,20 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
+import com.restaurant.DTOs.ProductDto;
 import com.restaurant.models.Product;
 import com.restaurant.service.ProductService;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;  
 
-// Aca se hacen los http methods (get, put, post and delete methods) con sus endpoints.
-// Hacen referencia a los metodos del service (previamente habiendo inyectado la dependencia)
-// Acá tambien se validan los datos de entrada
-
 @RestController
 @RequestMapping("/products")
-@CrossOrigin
 public class ProductController {
 
     private final ProductService productsService;

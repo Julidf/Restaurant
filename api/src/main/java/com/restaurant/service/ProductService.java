@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.restaurant.DTOs.ProductDto;
 import com.restaurant.models.Product;
 import com.restaurant.repository.ProductRepo;
 
@@ -53,6 +54,18 @@ public class ProductService {
     public void updateWithPatchById(Long id){
         //Product product = this.verifyProduct(id);
     }
+    
+    //Mapping a Product from a ProductDto
+    public Product mappingFromDto(ProductDto dto) {
+        Product product = new Product();
+        product.setName(dto.getName());
+        product.setDescription(dto.getDescription());
+        product.setPrice(dto.getPrice());
+        product.setStock(dto.getStock());
+        product.setImage(dto.getImage());
+        return product;
+    }
+    
  
 
 }

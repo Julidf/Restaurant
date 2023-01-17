@@ -4,8 +4,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-import com.restaurant.DTOs.ProductDto;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,9 +39,7 @@ public class Product {
 
     // Si modifico los atributos del product tengo que tambien modificar: el constructor, el mappeo y las validaciones
 
-    public Product() {
-
-    }
+    public Product() {}
 
     public Product(String name, String description, Float price, Integer stock, String image) {
         this.name = name;
@@ -51,17 +47,6 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.image = image;
-    }
-
-    //Mapping a Product from a ProductDto
-    public static Product fromDto(ProductDto dto) {
-        Product product = new Product();
-        product.setName(dto.getName());
-        product.setDescription(dto.getDescription());
-        product.setPrice(dto.getPrice());
-        product.setStock(dto.getStock());
-        product.setImage(dto.getImage());
-        return product;
     }
 
 

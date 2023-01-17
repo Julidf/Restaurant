@@ -16,7 +16,7 @@ const UserNavBar = () => {
         <NavLink className="nav__btn" to={"/favourites"}>
           Favourites
         </NavLink>
-        <NavLink className="nav__btn" to={"/signin"}>
+        <NavLink className="nav__btn" to={"/"}>
           Sign in
         </NavLink>
       </div>

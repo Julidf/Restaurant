@@ -2,9 +2,12 @@ import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import User from "./IUserReg";
+import { useNavigate } from "react-router-dom";
 import userFormValidation from "./userFormValidation";
 
 export default function UserRegistration() {
+  let navigate = useNavigate();
+
   const createUser = async (user: User) => {
     await axios.post(`/api/register`, user);
   };
@@ -17,6 +20,7 @@ export default function UserRegistration() {
         title: "User registered! ",
         text: values.firstname + "added succefully.",
       });
+      navigate("/");
     } catch (error) {
       Swal.fire({
         icon: "error",
@@ -35,7 +39,7 @@ export default function UserRegistration() {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => submitButtonHandler(values)}
+      onSubmit={(values: User) => submitButtonHandler(values)}
       validationSchema={userFormValidation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (

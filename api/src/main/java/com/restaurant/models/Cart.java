@@ -6,6 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
@@ -26,14 +27,15 @@ public class Cart {
     private Long user_id;
 
     @ManyToMany
-    private ArrayList<Product> productos = new ArrayList<>();
+    private List<Product> products;
 
     public Cart(){
-
+        this.products = new ArrayList<>();
     }
 
     public Cart(Long user_id) {
         this.user_id = user_id;
+        this.products = new ArrayList<>();
     }
 
 }

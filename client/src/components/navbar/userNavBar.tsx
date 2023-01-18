@@ -1,6 +1,6 @@
 import { isValidElement } from "react";
 import { NavLink } from "react-router-dom";
-import LoginForm from "../signIn/LoginForm";
+import LoginForm from "../signIn/login";
 import LogButtonOption from "../signIn/logButtonOption";
 import UserRegistration from "../userRegistration/userRegistration";
 

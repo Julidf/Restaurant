@@ -1,10 +1,14 @@
-import LoginForm from "./LoginForm";
+import React from "react";
+import UserNavBar from "../navbar/userNavBar";
 
-export default function Landing() {
-  return (
-    <div className="landing">
-      <h1>Welcome</h1>
-      <LoginForm />
-    </div>
-  );
-}
+export default function Landing(){
+  return ( 
+  <>
+  <div>
+    <UserNavBar />
+  </div>
+  <div>
+    <h1>Hello World!</h1>
+  </div>  
+  </>
+)}

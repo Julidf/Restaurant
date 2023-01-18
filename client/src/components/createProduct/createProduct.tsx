@@ -1,12 +1,17 @@
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
-import validation from "./validation";
-import Product from "./iProduct";
+import validation from "../../utils/validations/productValidation";
+import Product from "../../utils/interfaces/iProduct";
 
 export default function CreateProduct() {
+  const token = localStorage.getItem("token")
   const postProduct = async (product: Product) => {
-    await axios.post(`/api/products`, product);
+    await axios.post(`/api/admin/create-product`, product, {
+      headers:{
+      bearer_token: token
+      }
+    });
   };
 
   async function submitButtonHandler(values: Product) {

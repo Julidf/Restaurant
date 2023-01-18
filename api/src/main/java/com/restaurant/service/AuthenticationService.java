@@ -17,11 +17,9 @@ import lombok.AllArgsConstructor;
 public class AuthenticationService {
     
     private final UserService userService;
-    private final CartService cartService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
-
 
     public UserAuthResponse login(UserAuthRequest request) {
         authenticationManager.authenticate(
@@ -39,7 +37,6 @@ public class AuthenticationService {
 
     public UserAuthResponse register(UserRegisterRequest request) {
         User user = mappingFromRequest(request);
-        this.cartService.saveCart(user.getCart());
         this.userService.saveUser(user);
         String jwtToken = jwtService.generateToken(user);
         return UserAuthResponse.builder()

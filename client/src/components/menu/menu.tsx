@@ -3,7 +3,7 @@ import axios from "axios";
 import Card from "./card";
 import UserNavBar from "../navbar/userNavBar";
 
-export default function Home() {
+export default function Menu() {
   const [state, setState] = useState<any[]>([]);
 
   const getApi = async () => {

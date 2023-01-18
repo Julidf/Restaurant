@@ -1,25 +1,24 @@
 import axios from "axios";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import User from "./IUser";
-import validation from "./validation";
+import User from "../../utils/interfaces/IUserLogin";
+import validation from "../../utils/validations/loginValidation";
 
 export default function LoginForm() {
   let navigate = useNavigate();
-
   const handleSubmit = async (values: User) => {
     try {
       const response = await axios.post(`/api/login`, values);
       localStorage.setItem("token", response.data.token);
-      navigate("/home");
+      navigate("/");
     } catch (e: any) {
       Swal.fire({
         icon: "error",
         title: "Oops! ",
-        text: "Something went wrong, please try again",
-      });
-      console.log("ERROR ERROR ERROR !!!");
+        text: "Incorrect Email or Password",
+      })
+      setTimeout(()=>window.location.reload(),1000); 
     }
   };
 
@@ -75,6 +74,10 @@ export default function LoginForm() {
           <button type="submit" className="btn">
             Login
           </button>
+          
+          <Link to={"/register"} className="btn">
+            Register
+          </Link>
         </Form>
       )}
     </Formik>

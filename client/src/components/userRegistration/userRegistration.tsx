@@ -1,9 +1,9 @@
 import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
-import User from "./IUserReg";
+import User from "../../utils/interfaces/IUserReg";
 import { useNavigate } from "react-router-dom";
-import userFormValidation from "./userFormValidation";
+import userFormValidation from "../../utils/validations/userFormValidation";
 
 export default function UserRegistration() {
   let navigate = useNavigate();

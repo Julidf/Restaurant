@@ -4,7 +4,7 @@ import Menu from "./components/menu/menu";
 import { Route, Routes } from "react-router-dom";
 import CreateProduct from "./components/createProduct/createProduct";
 import UserRegistration from "./components/userRegistration/userRegistration";
-import LoginForm from "./components/signIn/login";
+import LoginForm from "./components/signIn/loginForm";
 import Landing from "./components/landing/landing";
 
 function App() {

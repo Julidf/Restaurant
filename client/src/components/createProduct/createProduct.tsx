@@ -5,12 +5,12 @@ import validation from "../../utils/validations/productValidation";
 import Product from "../../utils/interfaces/iProduct";
 
 export default function CreateProduct() {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   const postProduct = async (product: Product) => {
     await axios.post(`/api/admin/create-product`, product, {
-      headers:{
-      bearer_token: token
-      }
+      headers: {
+        bearer_token: token,
+      },
     });
   };
 

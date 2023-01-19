@@ -17,8 +17,8 @@ export default function LoginForm() {
         icon: "error",
         title: "Oops! ",
         text: "Incorrect Email or Password",
-      })
-      setTimeout(()=>window.location.reload(),1000); 
+      });
+      setTimeout(() => window.location.reload(), 1000);
     }
   };
 
@@ -34,51 +34,56 @@ export default function LoginForm() {
       validationSchema={validation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (
-        <Form className="form" onSubmit={handleSubmit}>
-          <label htmlFor="email" className="form__label">
-            Email:
-            <Field
-              type="email"
-              name="email"
-              placeholder="Insert email"
-              className="form__input"
-              value={values.email}
-              onChange={handleChange}
-              validate={validateOnChange}
-            />
-            <ErrorMessage
-              name="email"
-              component="span"
-              className="form__error"
-            />
-          </label>
+        <div className="form__container">
+          <h3>Welcome back!</h3>
+          <Form className="form" onSubmit={handleSubmit}>
+            <label htmlFor="email" className="form__label">
+              Email:
+              <Field
+                type="email"
+                name="email"
+                placeholder="Insert email"
+                className="form__input"
+                value={values.email}
+                onChange={handleChange}
+                validate={validateOnChange}
+              />
+              <ErrorMessage
+                name="email"
+                component="span"
+                className="form__error"
+              />
+            </label>
 
-          <label htmlFor="password" className="form__label">
-            Password:
-            <Field
-              type="password"
-              name="password"
-              placeholder="Insert password"
-              className="form__input"
-              value={values.password}
-              onChange={handleChange}
-              validate={validateOnChange}
-            />
-            <ErrorMessage
-              name="password"
-              component="span"
-              className="form__error"
-            />
-          </label>
+            <label htmlFor="password" className="form__label">
+              Password:
+              <Field
+                type="password"
+                name="password"
+                placeholder="Insert password"
+                className="form__input"
+                value={values.password}
+                onChange={handleChange}
+                validate={validateOnChange}
+              />
+              <ErrorMessage
+                name="password"
+                component="span"
+                className="form__error"
+              />
+            </label>
 
-          <button type="submit" className="btn">
-            Login
-          </button>
-          
-          <Link to={"/register"} className="btn">
-            Register
-          </Link>
-        </Form>
+            <button type="submit" className="btn">
+              Login
+            </button>
+            <Link to={"/register"} className="btn">
+              Register
+            </Link>
+            <Link to={"/"} className="btn">
+              Cancel
+            </Link>
+          </Form>
+        </div>
       )}
     </Formik>
   );

@@ -1,10 +1,28 @@
-.App {
-  background-color: darkgray;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4;
 }
 
 .form {
   display: flex;
   flex-direction: column;
+  
+}
+
+.form__container{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 400px;
+  height: 600px;
+  margin-top: 30px;
+}
+
+h3{
+  font-size: 2rem;
 }
 
 .form__label {
@@ -24,26 +42,54 @@
 }
 
 .btn {
-  margin: 1rem 0;
+  margin: 0.5rem 0;
   padding: 0.5rem 0;
   background-color: darkseagreen;
+  align-items: center;
+  text-align: center;
+  border: 1px solid black;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+a {
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:link, a:visited, a:active {
+  color: black;
+}
+
+a:hover {
+  color: rgb(77, 76, 76);
+}
+
+.btn:hover {
+  background-color: darkgreen;
+  cursor: pointer;
 }
 
 .nav__container {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: 20px;
+  padding: 12px;
+  background-color: rgba(68, 1, 1, 0.447);
+  align-items: center;
+  width: 80vw;
 }
 
 .nav__buttons {
   font-size: 1rem;
+  gap: 5px;
 }
 
 .nav__btn {
-  gap: 5px;
-  padding: 20px;
+  padding: 5px;
+  margin: 3px;
 }
 
 .product__container {
@@ -64,4 +110,13 @@
 
 .product__info {
   border: none;
+}
+
+.wrapper {
+  display:flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #f4f4f4;
+  align-items: center;
+  margin: 2px 2px 2px 2px;
 }

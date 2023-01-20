@@ -15,7 +15,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;  
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping
 public class ProductController {
 
     private final ProductService productsService;
@@ -25,12 +25,12 @@ public class ProductController {
         this.productsService = productsService;
     }
     
-    @GetMapping
+    @GetMapping("/products")
     public Iterable<Product> getAllProducts() {
         return this.productsService.findAll();
     }
     
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/products/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") Long id) {
         if (id < 0 || id == null) {
             return ResponseEntity.badRequest().build();
@@ -43,20 +43,20 @@ public class ProductController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/admin/create-product")
     public ResponseEntity<Product> saveProduct(@Valid @RequestBody ProductDto productDto) {
         Product product = this.productsService.mappingFromDto(productDto);
         this.productsService.saveProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @DeleteMapping(path = "/{productId}")
+    @DeleteMapping(path = "/products/{productId}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteProductById(@PathVariable("productId") Long id) {
         this.productsService.deleteById(id);
     }
     
-    @PatchMapping(path = "/{productId}")
+    @PatchMapping(path = "/products/{productId}")
     @Transactional
     public void updateWithPatchById(@PathVariable("productId") Long id) {
         

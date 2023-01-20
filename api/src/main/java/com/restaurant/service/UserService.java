@@ -9,16 +9,19 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.restaurant.models.User;
+import com.restaurant.repository.CartRepo;
 import com.restaurant.repository.UserRepo;
 
 @Service
 public class UserService implements UserDetailsService{
     
+    private final CartRepo cartRepository;
     private final UserRepo userRepository;
 
     @Autowired
-    public UserService(UserRepo userRepository) {
+    public UserService(UserRepo userRepository, CartRepo cartRepository) {
         this.userRepository = userRepository;
+        this.cartRepository = cartRepository;
     }
 
     @Override
@@ -34,6 +37,7 @@ public class UserService implements UserDetailsService{
     }
 
     public User saveUser(User user) {
+        this.cartRepository.save(user.getCart());
         return this.userRepository.save(user);
     }
     

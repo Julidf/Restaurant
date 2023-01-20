@@ -32,14 +32,16 @@ public class Product {
     private Integer stock;
 
     @Column
-    private Boolean isAvailable = true;
+    private Boolean isAvailable;
 
     @Column
-    private String image; 
+    private String image;
 
     // Si modifico los atributos del product tengo que tambien modificar: el constructor, el mappeo y las validaciones
 
-    public Product() {}
+    public Product() {
+        this.isAvailable = true;
+    }
 
     public Product(String name, String description, Float price, Integer stock, String image) {
         this.name = name;
@@ -47,6 +49,7 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.image = image;
+        this.isAvailable = true;
     }
 
 

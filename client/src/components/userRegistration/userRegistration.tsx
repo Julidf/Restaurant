@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import userFormValidation from "../../utils/validations/userFormValidation";
 
 export default function UserRegistration() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const createUser = async (user: User) => {
     await axios.post(`/api/register`, user);

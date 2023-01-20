@@ -43,6 +43,7 @@ export default function LoginForm() {
                 type="email"
                 name="email"
                 placeholder="Insert email"
+                autoComplete="off"
                 className="form__input"
                 value={values.email}
                 onChange={handleChange}

@@ -10,15 +10,15 @@ import Wrapper from "./components/wrapper/wrapper";
 
 function App() {
   return (
-      <Wrapper>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/admin/create-product" element={<CreateProduct />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<UserRegistration />} />
-        </Routes>
-      </Wrapper>
+    <Wrapper>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/admin/create-product" element={<CreateProduct />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<UserRegistration />} />
+      </Routes>
+    </Wrapper>
   );
 }
 

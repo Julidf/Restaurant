@@ -52,6 +52,7 @@ export default function UserRegistration() {
                 type="text"
                 name="firstname"
                 placeholder="Insert name"
+                autoComplete="off"
                 className="form__input"
                 value={values.firstname}
                 onChange={handleChange}
@@ -70,6 +71,7 @@ export default function UserRegistration() {
                 type="text"
                 name="lastname"
                 placeholder="Insert lastname"
+                autoComplete="off"
                 className="form__input"
                 value={values.lastname}
                 onChange={handleChange}
@@ -87,6 +89,7 @@ export default function UserRegistration() {
                 type="email"
                 name="email"
                 placeholder="Insert email"
+                autoComplete="off"
                 className="form__input"
                 value={values.email}
                 onChange={handleChange}

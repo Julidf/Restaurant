@@ -10,7 +10,7 @@ export default function CreateProduct() {
   const postProduct = async (product: Product) => {
     await axios.post(`/api/admin/create-product`, product, {
       headers: {
-        bearer_token: token,
+        Authorization: `Bearer ${token}`
       },
     });
   };
@@ -56,6 +56,7 @@ export default function CreateProduct() {
                 type="text"
                 name="name"
                 placeholder="Insert name"
+                autoComplete="off"
                 className="form__input"
                 value={values.name}
                 onChange={handleChange}
@@ -74,6 +75,7 @@ export default function CreateProduct() {
                 type="text"
                 name="description"
                 placeholder="Insert description"
+                autoComplete="off"
                 className="form__input"
                 value={values.description}
                 onChange={handleChange}
@@ -92,6 +94,7 @@ export default function CreateProduct() {
                 step="0.01"
                 name="price"
                 placeholder="Insert price"
+                autoComplete="off"
                 className="form__input"
                 value={values.price === 0 ? "" : values.price}
                 onChange={handleChange}
@@ -110,6 +113,7 @@ export default function CreateProduct() {
                 type="number"
                 name="stock"
                 placeholder="Insert stock"
+                autoComplete="off"
                 className="form__input"
                 value={values.stock === 0 ? "" : values.stock}
                 onChange={handleChange}
@@ -127,6 +131,7 @@ export default function CreateProduct() {
                 type="text"
                 name="image"
                 placeholder="Insert image"
+                autoComplete="off"
                 className="form__input"
                 value={values.image}
                 onChange={handleChange}

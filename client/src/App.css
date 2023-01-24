@@ -38,11 +38,13 @@ h3{
   display: flex;
   flex-direction: column;
   margin: 0.5rem 0;
+  color: white;
 }
 
 .form__input {
   margin: 0.5rem 0;
   padding: 0.5rem 1rem;
+  color: black;
 }
 
 .form__error {

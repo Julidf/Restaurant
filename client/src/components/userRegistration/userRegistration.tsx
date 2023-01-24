@@ -2,7 +2,7 @@ import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import User from "../../utils/interfaces/IUserReg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import userFormValidation from "../../utils/validations/userFormValidation";
 
 export default function UserRegistration() {

@@ -12,7 +12,7 @@ import com.restaurant.models.Product;
 import com.restaurant.service.ProductService;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;  
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping
@@ -24,12 +24,12 @@ public class ProductController {
     public ProductController(ProductService productsService) {
         this.productsService = productsService;
     }
-    
+
     @GetMapping("/products")
     public Iterable<Product> getAllProducts() {
         return this.productsService.findAll();
     }
-    
+
     @GetMapping(path = "/products/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") Long id) {
         if (id < 0 || id == null) {
@@ -55,11 +55,11 @@ public class ProductController {
     public void deleteProductById(@PathVariable("productId") Long id) {
         this.productsService.deleteById(id);
     }
-    
+
     @PatchMapping(path = "/products/{productId}")
     @Transactional
     public void updateWithPatchById(@PathVariable("productId") Long id) {
-        
+
     }
 
 }

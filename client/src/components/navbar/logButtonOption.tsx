@@ -1,15 +1,12 @@
-import { useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export default function LogButtonOption() {
-
   function handleClick() {
     localStorage.removeItem("token");
   }
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // eslint-disable-line
   const isLogged: String | null = localStorage.getItem("token");
-  
 
   return isLogged ? (
     <NavLink to={"/"} className="nav__btn" onClick={() => handleClick()}>

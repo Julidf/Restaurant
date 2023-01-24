@@ -13,6 +13,8 @@ import com.restaurant.DTOs.UserRegisterRequest;
 import com.restaurant.service.AuthenticationService;
 import com.restaurant.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping
 public class UserController {
@@ -27,12 +29,12 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserAuthResponse> login(@RequestBody UserAuthRequest request) {
+    public ResponseEntity<UserAuthResponse> login(@Valid @RequestBody UserAuthRequest request) {
         return ResponseEntity.ok(this.authService.login(request));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserAuthResponse> register(@RequestBody UserRegisterRequest request) {
+    public ResponseEntity<UserAuthResponse> register(@Valid @RequestBody UserRegisterRequest request) {
         return ResponseEntity.ok(this.authService.register(request));
     }
 

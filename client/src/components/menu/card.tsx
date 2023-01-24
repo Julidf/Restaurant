@@ -25,7 +25,7 @@ export default function Card({
         </Link>
       </div>
       <div className="product__info">
-        <h3>{name}</h3>
+        <h4>{name}</h4>
         <p>{description}</p>
       </div>
       <div>

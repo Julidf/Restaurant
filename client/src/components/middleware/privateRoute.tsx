@@ -1,21 +1,16 @@
-import { Component } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import CreateProduct from "../createProduct/createProduct";
 import AuthCheck from "./authCheck";
 
 interface requiredRole {
-    requiredRole: string
+  requiredRole: string;
 }
 
-const PrivateRoute = ({requiredRole}: requiredRole)  => {
+const PrivateRoute = ({ requiredRole }: requiredRole) => {
+  const location = useLocation();
 
-    const location = useLocation();
-    
-    return(
-        AuthCheck(requiredRole)
-            ? <Outlet />
-            : <Navigate to="/login" state={{from: location}} replace /> 
-    )
-}
+  return AuthCheck(requiredRole) ? 
+    <Outlet /> : <Navigate to="/login" state={{ from: location }} replace />
 
-export default PrivateRoute
+};
+
+export default PrivateRoute;

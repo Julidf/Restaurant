@@ -1,5 +1,8 @@
 package com.restaurant.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,7 +32,11 @@ public class AuthenticationService {
             )
         );
         User user = this.userService.findByEmail(request.getEmail()).get();
-        String jwtToken = jwtService.generateToken(user);
+
+        Map<String, Object> extraClaims = new HashMap<String, Object>();
+        extraClaims.putIfAbsent("role", user.getRole().getRoleName());
+
+        String jwtToken = jwtService.generateToken(user, extraClaims);
         return UserAuthResponse.builder()
             .token(jwtToken)
             .build();

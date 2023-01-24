@@ -7,6 +7,7 @@ import userFormValidation from "../../utils/validations/userFormValidation";
 
 export default function UserRegistration() {
   const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
   const createUser = async (user: User) => {
     await axios.post(`/api/register`, user);
@@ -121,9 +122,9 @@ export default function UserRegistration() {
             <button type="submit" className="btn">
               Create
             </button>
-            <Link to={"/"} className="btn">
+            <button type="button" onClick={goBack} className="btn">
               Cancel
-            </Link>
+            </button>
           </Form>
         </div>
       )}

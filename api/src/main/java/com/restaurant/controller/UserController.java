@@ -28,17 +28,11 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<UserAuthResponse> login(@RequestBody UserAuthRequest request) {
-        if (!userService.findByEmail(request.getEmail()).isPresent()){
-            return ResponseEntity.badRequest().build();
-        }
         return ResponseEntity.ok(this.authService.login(request));
     }
 
     @PostMapping("/register")
     public ResponseEntity<UserAuthResponse> register(@RequestBody UserRegisterRequest request) {
-        if (userService.findByEmail(request.getEmail()).isPresent()){
-            return ResponseEntity.badRequest().build();
-        }
         return ResponseEntity.ok(this.authService.register(request));
     }
 

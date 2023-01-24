@@ -6,7 +6,8 @@ import { Link, useNavigate } from "react-router-dom";
 import userFormValidation from "../../utils/validations/userFormValidation";
 
 export default function UserRegistration() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
 
   const createUser = async (user: User) => {
     await axios.post(`/api/register`, user);
@@ -52,6 +53,7 @@ export default function UserRegistration() {
                 type="text"
                 name="firstname"
                 placeholder="Insert name"
+                autoComplete="off"
                 className="form__input"
                 value={values.firstname}
                 onChange={handleChange}
@@ -70,6 +72,7 @@ export default function UserRegistration() {
                 type="text"
                 name="lastname"
                 placeholder="Insert lastname"
+                autoComplete="off"
                 className="form__input"
                 value={values.lastname}
                 onChange={handleChange}
@@ -87,6 +90,7 @@ export default function UserRegistration() {
                 type="email"
                 name="email"
                 placeholder="Insert email"
+                autoComplete="off"
                 className="form__input"
                 value={values.email}
                 onChange={handleChange}
@@ -118,9 +122,9 @@ export default function UserRegistration() {
             <button type="submit" className="btn">
               Create
             </button>
-            <Link to={"/"} className="btn">
+            <button type="button" onClick={goBack} className="btn">
               Cancel
-            </Link>
+            </button>
           </Form>
         </div>
       )}

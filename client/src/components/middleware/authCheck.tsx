@@ -1,14 +1,16 @@
 import jwtDecode from 'jwt-decode'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 const AuthCheck = (requiredRole: string) => {
-  const navigate = useNavigate()
 
   const token: any = localStorage.getItem('token')
+
+  if (token == null) {
+    return false;
+  }
+
   const decodedToken: any = jwtDecode(token)
 
-  if (token == null || decodedToken.role !== requiredRole) {
+  if (decodedToken.role !== requiredRole) {
     return false;
   } else {
     return true;

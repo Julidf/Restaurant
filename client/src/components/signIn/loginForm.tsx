@@ -1,24 +1,28 @@
 import axios from "axios";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import User from "../../utils/interfaces/IUserLogin";
 import validation from "../../utils/validations/loginValidation";
 
 export default function LoginForm() {
+
   let navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const goBack = () => navigate(-1);
+
   const handleSubmit = async (values: User) => {
     try {
       const response = await axios.post(`/api/login`, values);
       localStorage.setItem("token", response.data.token);
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (e: any) {
       Swal.fire({
         icon: "error",
         title: "Oops! ",
         text: "Incorrect Email or Password",
       });
-      setTimeout(() => window.location.reload(), 1000);
     }
   };
 
@@ -43,6 +47,7 @@ export default function LoginForm() {
                 type="email"
                 name="email"
                 placeholder="Insert email"
+                autoComplete="off"
                 className="form__input"
                 value={values.email}
                 onChange={handleChange}
@@ -79,9 +84,9 @@ export default function LoginForm() {
             <Link to={"/register"} className="btn">
               Register
             </Link>
-            <Link to={"/"} className="btn">
+            <button type="button" onClick={goBack} className="btn">
               Cancel
-            </Link>
+            </button>
           </Form>
         </div>
       )}

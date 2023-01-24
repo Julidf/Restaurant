@@ -4,13 +4,14 @@ import Swal from "sweetalert2";
 import validation from "../../utils/validations/productValidation";
 import Product from "../../utils/interfaces/iProduct";
 import { Link } from "react-router-dom";
+import UserNavBar from "../navbar/userNavBar";
 
 export default function CreateProduct() {
   const token = localStorage.getItem("token");
   const postProduct = async (product: Product) => {
     await axios.post(`/api/admin/create-product`, product, {
       headers: {
-        bearer_token: token,
+        Authorization: `Bearer ${token}`
       },
     });
   };
@@ -41,6 +42,8 @@ export default function CreateProduct() {
     image: "",
   };
   return (
+    <>
+    <UserNavBar />
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => submitButtonHandler(values)}
@@ -56,16 +59,15 @@ export default function CreateProduct() {
                 type="text"
                 name="name"
                 placeholder="Insert name"
+                autoComplete="off"
                 className="form__input"
                 value={values.name}
                 onChange={handleChange}
-                validate={validateOnChange}
-              />
+                validate={validateOnChange} />
               <ErrorMessage
                 name="name"
                 component="span"
-                className="form__error"
-              />
+                className="form__error" />
             </label>
 
             <label htmlFor="description" className="form__label">
@@ -74,15 +76,14 @@ export default function CreateProduct() {
                 type="text"
                 name="description"
                 placeholder="Insert description"
+                autoComplete="off"
                 className="form__input"
                 value={values.description}
-                onChange={handleChange}
-              />
+                onChange={handleChange} />
               <ErrorMessage
                 name="description"
                 component="span"
-                className="form__error"
-              />
+                className="form__error" />
             </label>
 
             <label htmlFor="price" className="form__label">
@@ -92,16 +93,15 @@ export default function CreateProduct() {
                 step="0.01"
                 name="price"
                 placeholder="Insert price"
+                autoComplete="off"
                 className="form__input"
                 value={values.price === 0 ? "" : values.price}
                 onChange={handleChange}
-                validate={validateOnChange}
-              />
+                validate={validateOnChange} />
               <ErrorMessage
                 name="price"
                 component="span"
-                className="form__error"
-              />
+                className="form__error" />
             </label>
 
             <label htmlFor="stock" className="form__label">
@@ -110,15 +110,14 @@ export default function CreateProduct() {
                 type="number"
                 name="stock"
                 placeholder="Insert stock"
+                autoComplete="off"
                 className="form__input"
                 value={values.stock === 0 ? "" : values.stock}
-                onChange={handleChange}
-              />
+                onChange={handleChange} />
               <ErrorMessage
                 name="stock"
                 component="span"
-                className="form__error"
-              />
+                className="form__error" />
             </label>
 
             <label htmlFor="image" className="form__label">
@@ -127,15 +126,14 @@ export default function CreateProduct() {
                 type="text"
                 name="image"
                 placeholder="Insert image"
+                autoComplete="off"
                 className="form__input"
                 value={values.image}
-                onChange={handleChange}
-              />
+                onChange={handleChange} />
               <ErrorMessage
                 name="image"
                 component="span"
-                className="form__error"
-              />
+                className="form__error" />
             </label>
 
             <button type="submit" className="btn">
@@ -148,5 +146,6 @@ export default function CreateProduct() {
         </div>
       )}
     </Formik>
+    </>
   );
 }

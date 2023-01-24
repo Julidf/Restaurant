@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import LogButtonOption from "../signIn/logButtonOption";
+import LogButtonOption from "./logButtonOption";
 
 const UserNavBar = () => {
   return (
@@ -9,10 +9,10 @@ const UserNavBar = () => {
       </div>
 
       <div className="nav__buttons">
-        <NavLink className="nav__btn" to={"/contact-us"}>
+        <NavLink to={"/contact-us"} className="nav__btn" >
           Contact us
         </NavLink>
-        <NavLink className="nav__btn" to={"/menu"}>
+        <NavLink to={"/menu"} className="nav__btn" >
           Menu
         </NavLink>
         <LogButtonOption />

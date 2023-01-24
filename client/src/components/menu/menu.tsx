@@ -18,9 +18,11 @@ export default function Menu() {
   return (
     <div>
       <UserNavBar />
-      {!state
-        ? "loading..."
-        : state.map((product) => <Card key={product.id} {...product} />)}
+      <div className="all__products__container">
+        {!state
+          ? "loading..."
+          : state.map((product) => <Card key={product.id} {...product} />)}
+      </div>
     </div>
   );
 }

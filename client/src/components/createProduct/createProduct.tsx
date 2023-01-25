@@ -9,7 +9,7 @@ import UserNavBar from "../navbar/userNavBar";
 export default function CreateProduct() {
   const token = localStorage.getItem("token");
   const postProduct = async (product: Product) => {
-    await axios.post(`/api/admin/create-product`, product, {
+    await axios.post(`/api/create-product`, product, {
       headers: {
         Authorization: `Bearer ${token}`
       },

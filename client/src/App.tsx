@@ -8,6 +8,7 @@ import LoginForm from "./components/signIn/loginForm";
 import Landing from "./components/landing/landing";
 import Wrapper from "./components/wrapper/wrapper";
 import PrivateRoute from "./components/middleware/privateRoute";
+import ContactUs from "./components/contactUs/contactUs";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<UserRegistration />} />
+          <Route path="/contact-us" element={<ContactUs />} />
           
           <Route element={<PrivateRoute requiredRole='ADMIN'/>}>
             <Route path="/admin/create-product" element={<CreateProduct/>}/>

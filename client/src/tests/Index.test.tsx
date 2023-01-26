@@ -1,3 +1,4 @@
+jest.mock('jwt-decode', () => jest.fn(() => ({ role: 'user' })));
 import AuthCheck from "../components/middleware/authCheck"; 
 
 describe("AuthCheck", () => {
@@ -9,17 +10,19 @@ describe("AuthCheck", () => {
     expect(AuthCheck("admin")).toBe(false);
   });
 
-  // it("returns false if the token's role does not match the required role", () => {
-  //   localStorage.setItem("token", "validToken");
-  //   const spy = jest.spyOn(jwtDecode, 'default');
-  //   spy.mockImplementationOnce(() => ({ role: "user" }));
-  //   expect(AuthCheck("admin")).toBe(false);
-  // });
+  it("returns false if the token's role does not match the required role", () => {
+    localStorage.setItem("token", "validToken");
+    expect(AuthCheck("admin")).toBe(false);
+  });
 
-  // it("returns true if the token's role matches the required role", () => {
-  //   localStorage.setItem("token", "validToken");
-  //   const spy = jest.spyOn(jwtDecode, 'default');
-  //   spy.mockImplementationOnce(() => ({ role: "admin" }));
-  //   expect(AuthCheck("admin")).toBe(true);
-  // });
+  it("returns true if the token's role matches the required role", () => {
+    jest.resetModules();
+    jest.mock('jwt-decode', () => jest.fn(() => ({ role: 'admin' })));
+    localStorage.setItem("token", "validToken"); //Enter a valid token to login as admin
+    expect(AuthCheck("admin")).toBe(true);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 });

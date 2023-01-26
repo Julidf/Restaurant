@@ -48,23 +48,6 @@ export default function ContactUs() {
               />
             </label>
 
-            <label htmlFor="message" className="form__label">
-              Message:
-              <textarea
-                name="message"
-                placeholder="Your message here..."
-                className="form__input"
-                id="textarea"
-                value={values.message}
-                onChange={handleChange}
-              />
-              <ErrorMessage
-                name="password"
-                component="span"
-                className="form__error"
-              />
-            </label>
-
             <label htmlFor="email" className="form__label">
               Email:
               <Field
@@ -79,6 +62,23 @@ export default function ContactUs() {
               />
               <ErrorMessage
                 name="email"
+                component="span"
+                className="form__error"
+              />
+            </label>
+
+            <label htmlFor="message" className="form__label">
+              Message:
+              <textarea
+                name="message"
+                placeholder="Your message here..."
+                className="form__input"
+                id="textarea"
+                value={values.message}
+                onChange={handleChange}
+              />
+              <ErrorMessage
+                name="password"
                 component="span"
                 className="form__error"
               />

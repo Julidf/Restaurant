@@ -1,13 +1,12 @@
 import jwtDecode from "jwt-decode";
 
-const AuthCheck = (requiredRole: string) => {
-  const token: any = localStorage.getItem("token");
-  
-  if (token == null) return false;
-  
+const AuthCheck: Function = (requiredRole: string): boolean => {
+  const token: string | null = localStorage.getItem("token");
+
+  if (token === null) return false;
   const decodedToken: any = jwtDecode(token);
   if (decodedToken.role !== requiredRole) return false;
-  else return true;
+  return true;
 };
 
 export default AuthCheck;

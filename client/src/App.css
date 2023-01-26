@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  color: white;
+  color:white;
 }
 
 body {
@@ -12,6 +12,43 @@ body {
   width: 100%;
   height: 100%;
   z-index: -1;
+  backdrop-filter: blur(2px);
+}
+
+.landing__container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.landing__title{
+  font-size: 2rem;
+}
+
+.landing__image{
+  width: 95%;
+  height: 80%;
+  border-radius: 5px;
+}
+
+.landing__btn__container{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:1rem;
+  width: 100%;
+  gap:5rem;
+}
+
+#landing__btn{
+  width: 70%;
+  background-color: rgba(68, 1, 1, 0.67);
+}
+
+#landing__btn:hover{
+  background-color: rgba(255, 166, 0, 0.379);
 }
 
 .form {
@@ -19,17 +56,19 @@ body {
   flex-direction: column;
 }
 
-.form__container {
+.form__container{
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 400px;
-  height: 600px;
+  width: 90%;
+  height: 80%;
   object-fit: cover;
   margin-top: 30px;
 }
 
-h3 {
+h3{
   font-size: 2rem;
 }
 
@@ -44,11 +83,12 @@ h3 {
   margin: 0.5rem 0;
   padding: 0.5rem 1rem;
   color: black;
+  border-radius: 5px;
 }
 
-#textarea {
-  height: 150px;
-  width: 400px;
+#textarea{
+  width:300px;
+  height: 170px;
 }
 
 .form__error {
@@ -65,6 +105,7 @@ h3 {
   border: 1px solid black;
   font-size: 1rem;
   font-weight: bold;
+  border-radius: 5px;
 }
 
 a {
@@ -72,10 +113,8 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
-a:link,
-a:visited,
-a:active {
-  color: white;
+a:link, a:visited, a:active {
+  color:white;
 }
 
 a:hover {
@@ -84,7 +123,7 @@ a:hover {
 
 .btn:hover {
   background-color: rgba(255, 166, 0, 0.379);
-  color: white;
+  color:white;
   cursor: pointer;
 }
 
@@ -117,7 +156,7 @@ a:hover {
   align-items: center;
   width: 30%;
   height: 250px;
-  margin: 10px;
+  margin:10px;
   border-radius: 5px;
   box-shadow: 0 0 10px #000;
   background-color: rgba(68, 1, 1, 0.447);
@@ -134,8 +173,8 @@ a:hover {
   border: none;
 }
 
-.all__products__container {
-  display: flex;
+.all__products__container{
+  display:flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
@@ -145,9 +184,10 @@ a:hover {
 }
 
 .wrapper {
-  display: flex;
+  display:flex;
   flex-direction: column;
   padding: 1rem;
+  background-color:none;
   align-items: center;
   margin: 2px 2px 2px 2px;
   height: 100vh;

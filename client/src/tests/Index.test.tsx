@@ -1,28 +1,28 @@
-import {describe, expect, it, beforeEach, afterEach} from '@jest/globals';
-import LoginForm from "../components/signIn/loginForm";
-import * as ReactDOM from "react-dom";
+jest.mock('jwt-decode', () => jest.fn(() => ({ role: 'user' })));
+import AuthCheck from "../components/middleware/authCheck"; 
 
-describe("Login tests", () => {
-  let container: HTMLDivElement;
-
+describe("AuthCheck", () => {
   beforeEach(() => {
-    container = document.createElement("div");
-    document.body.appendChild(container);
-    ReactDOM.render(<LoginForm />, container);
+    localStorage.clear();
+  });
+
+  it("returns false if no token is present in local storage", () => {
+    expect(AuthCheck("admin")).toBe(false);
+  });
+
+  it("returns false if the token's role does not match the required role", () => {
+    localStorage.setItem("token", "validToken");
+    expect(AuthCheck("admin")).toBe(false);
+  });
+
+  it("returns true if the token's role matches the required role", () => {
+    jest.resetModules();
+    jest.mock('jwt-decode', () => jest.fn(() => ({ role: 'admin' })));
+    localStorage.setItem("token", "validToken"); //Enter a valid token to login as admin
+    expect(AuthCheck("admin")).toBe(true);
   });
 
   afterEach(() => {
-    document.body.removeChild(container);
-    container.remove();
-  });
-
-  it("Should renders correctly initial document", () => {
-    const inputs = container.querySelectorAll("input");
-    expect(inputs).toHaveLength(5);
-    expect(inputs[0].name).toBe("email");
-    expect(inputs[1].name).toBe("password");
-    expect(inputs[2].value).toBe("Login");
-    expect(inputs[3].value).toBe("Register");
-    expect(inputs[4].value).toBe("Cancel");
+    jest.clearAllMocks();
   });
 });

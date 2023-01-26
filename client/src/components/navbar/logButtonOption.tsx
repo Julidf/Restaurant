@@ -1,15 +1,11 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useAuth } from "./useAuth";
 
 export default function LogButtonOption() {
-  function handleClick() {
-    localStorage.removeItem("token");
-  }
+  const {isLoggedIn, logOut} = useAuth();
 
-  const navigate = useNavigate(); // eslint-disable-line
-  const isLogged: String | null = localStorage.getItem("token");
-
-  return isLogged ? (
-    <NavLink to={"/"} className="nav__btn" onClick={() => handleClick()}>
+  return isLoggedIn ? (
+    <NavLink to={"/"} className="nav__btn" onClick={() => logOut()}>
       Log Out
     </NavLink>
   ) : (

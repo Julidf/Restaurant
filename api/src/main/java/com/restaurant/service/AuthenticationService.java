@@ -24,17 +24,16 @@ public class AuthenticationService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public UserAuthResponse login(UserAuthRequest request) {
+    public UserAuthResponse login(UserAuthRequest request, User user) {
         authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 request.getEmail(),
                 request.getPassword()
             )
         );
-        User user = this.userService.findByEmail(request.getEmail()).get();
-
+        
         Map<String, Object> extraClaims = new HashMap<String, Object>();
-        extraClaims.putIfAbsent("role", user.getRole().getRoleName());
+        extraClaims.putIfAbsent("role", user.getRole().name());
 
         String jwtToken = jwtService.generateToken(user, extraClaims);
         return UserAuthResponse.builder()
@@ -42,8 +41,7 @@ public class AuthenticationService {
             .build();
     }
 
-    public UserAuthResponse register(UserRegisterRequest request) {
-        User user = mappingFromRequest(request);
+    public UserAuthResponse register(User user) {
         this.userService.saveUser(user);
         String jwtToken = jwtService.generateToken(user);
         return UserAuthResponse.builder()
@@ -51,7 +49,7 @@ public class AuthenticationService {
             .build();
     }
 
-    private User mappingFromRequest (UserRegisterRequest request) {
+    public User mappingFromRequest (UserRegisterRequest request) {
         User user = new User();
         user.setFirstName(request.getFirstname());
         user.setLastName(request.getLastname());

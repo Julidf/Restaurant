@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 import User from "../../utils/interfaces/IUserLogin";
 import validation from "../../utils/validations/loginValidation";
+import { useAuth } from "../navbar/useAuth";
 
 export default function LoginForm() {
 
@@ -11,10 +12,16 @@ export default function LoginForm() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const goBack = () => navigate(-1);
+  const {isLoggedIn} = useAuth();
 
   const handleSubmit = async (values: User) => {
     try {
       const response = await axios.post(`/api/login`, values);
+      
+      if (!response.data.token){
+        throw new Error("ERROR");
+      }
+
       localStorage.setItem("token", response.data.token);
       navigate(from, { replace: true });
     } catch (e: any) {

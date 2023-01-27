@@ -4,13 +4,19 @@ import Swal from "sweetalert2";
 import User from "../../utils/interfaces/IUserReg";
 import { useNavigate } from "react-router-dom";
 import userFormValidation from "../../utils/validations/userFormValidation";
+import { response } from "express";
 
 export default function UserRegistration() {
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
 
   const createUser = async (user: User) => {
-    await axios.post(`/api/register`, user);
+    const response = await axios.post(`/api/register`, user);
+    if (response.data.token){
+      return response.data.token;
+    } else {
+      throw new Error("ERROR");
+    }
   };
 
   async function submitButtonHandler(values: User) {
@@ -19,14 +25,14 @@ export default function UserRegistration() {
       Swal.fire({
         icon: "success",
         title: "User registered! ",
-        text: values.firstname + "added succefully.",
+        text: values.firstname + " added succefully.",
       });
       navigate("/");
     } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Oops! ",
-        text: "Something went wrong, please try again",
+        text: "Email already registered",
       });
     }
   }

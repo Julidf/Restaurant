@@ -1,20 +1,26 @@
 import axios from "axios";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import User from "../../utils/interfaces/IUserLogin";
 import validation from "../../utils/validations/loginValidation";
+import { useAuth } from "../navbar/useAuth";
 
 export default function LoginForm() {
-
   let navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const goBack = () => navigate(-1);
+  const { isLoggedIn } = useAuth();
 
   const handleSubmit = async (values: User) => {
     try {
       const response = await axios.post(`/api/login`, values);
+
+      if (!response.data.token) {
+        throw new Error("ERROR");
+      }
+
       localStorage.setItem("token", response.data.token);
       navigate(from, { replace: true });
     } catch (e: any) {
@@ -31,7 +37,7 @@ export default function LoginForm() {
     password: "",
   };
 
-  return (
+  return !isLoggedIn ? (
     <Formik
       initialValues={initialValues}
       onSubmit={(values: User) => handleSubmit(values)}
@@ -91,5 +97,7 @@ export default function LoginForm() {
         </div>
       )}
     </Formik>
+  ) : (
+    <Navigate to={"/"} />
   );
 }

@@ -43,7 +43,7 @@ public class ProductController {
         }
     }
 
-    @PostMapping("/create-product")
+    @PostMapping("/admin/create-product")
     public ResponseEntity<Product> saveProduct(@Valid @RequestBody ProductDto productDto) {
         Product product = this.productsService.mappingFromDto(productDto);
         this.productsService.saveProduct(product);

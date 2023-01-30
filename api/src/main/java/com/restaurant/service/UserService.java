@@ -3,6 +3,7 @@ package com.restaurant.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,6 +31,11 @@ public class UserService implements UserDetailsService{
             .findByEmail(email)
             .orElseThrow(() -> new UsernameNotFoundException("The user with email: " + email + " doesn't exists"));
         return user;
+    }
+
+    @Cacheable
+    public Iterable<User> findAll() {
+        return this.userRepository.findAll();
     }
 
     public Optional<User> findByEmail(String email) {

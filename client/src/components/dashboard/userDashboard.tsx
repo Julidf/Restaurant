@@ -17,7 +17,16 @@ const UserDashboard = ({
     enabled,
     accountNonLocked,
   }: UserList) => {
-    return <div></div>
+    return( 
+        <div>
+            <p>Name: {firstName}</p>
+            <p>Lastname: {lastName}</p>
+            <p>Email: {email}</p>
+            <p>Role: {role}</p>
+            <p>Enabled: {`${enabled}`}</p>
+            <p>Locked: {`${accountNonLocked}`}</p>
+        </div>
+    )
 }
 
 export default UserDashboard;

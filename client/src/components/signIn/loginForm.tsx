@@ -19,7 +19,7 @@ export default function LoginForm() {
       const response = await axios.post(`/api/login`, values);
       
       if (!response.data.token){
-        throw new Error("ERROR");
+        throw new Error();
       }
 
       localStorage.setItem("token", response.data.token);

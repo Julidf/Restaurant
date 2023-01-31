@@ -35,7 +35,12 @@ public class UserController {
     public ResponseEntity<UserAuthResponse> login(@Valid @RequestBody UserAuthRequest request) {
         Optional<User> user = this.userService.findByEmail(request.getEmail());
         if (!user.isPresent()) {
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(
+                UserAuthResponse.builder()
+                .responseMessage("Email doesn't exist!")
+                .responseStatus(401)
+                .build()
+            );
         }
         return ResponseEntity.ok(this.authService.login(request, user.get()));
     }
@@ -44,7 +49,12 @@ public class UserController {
     public ResponseEntity<UserAuthResponse> register(@Valid @RequestBody UserRegisterRequest request) {
         Optional<User> existUser = this.userService.findByEmail(request.getEmail());
         if (existUser.isPresent()) {
-            return ResponseEntity.ok().build();
+            return ResponseEntity.ok(
+                UserAuthResponse.builder()
+                .responseMessage("Email already exist!")
+                .responseStatus(401)
+                .build()
+                );
         }
         User user = authService.mappingFromRequest(request);
         return ResponseEntity.ok(this.authService.register(user));

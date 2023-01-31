@@ -38,6 +38,8 @@ public class AuthenticationService {
         String jwtToken = jwtService.generateToken(user, extraClaims);
         return UserAuthResponse.builder()
             .token(jwtToken)
+            .responseMessage("Login successfully")
+            .responseStatus(200)
             .build();
     }
 
@@ -46,6 +48,8 @@ public class AuthenticationService {
         String jwtToken = jwtService.generateToken(user);
         return UserAuthResponse.builder()
             .token(jwtToken)
+            .responseMessage("Register successfully")
+            .responseStatus(200)
             .build();
     }
 

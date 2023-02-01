@@ -21,7 +21,7 @@ function App() {
           <Route path="/register" element={<UserRegistration />} />
           <Route path="/contact-us" element={<ContactUs />} />
           
-          <Route element={<PrivateRoute requiredRole='ADMIN'/>}>
+          <Route element={<PrivateRoute requiredRole="ADMIN"/>}>
             <Route path="/admin/create-product" element={<CreateProduct/>}/>
             <Route path="/admin/users" element={<UserList /> } />
             <Route path="/admin/orders" element={<CreateProduct />} />

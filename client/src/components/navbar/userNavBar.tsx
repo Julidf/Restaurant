@@ -16,6 +16,9 @@ const UserNavBar = () => {
           Menu
         </NavLink>
         <LogButtonOption />
+        <NavLink to={"/admin/create-product"} className="nav__btn" >
+          ADMIN
+        </NavLink>
       </div>
     </div>
   );

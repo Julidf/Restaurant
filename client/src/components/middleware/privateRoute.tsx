@@ -1,16 +1,29 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import AuthCheck from "./authCheck";
+import useAutho from "../hooks/useAutho";
 
 interface requiredRole {
   requiredRole: string;
 }
 
-const PrivateRoute = ({ requiredRole }: requiredRole) => {
+export default function PrivateRoute ({ requiredRole }: requiredRole) {
+  const { auth }: any = useAutho();
   const location = useLocation();
 
-  return AuthCheck(requiredRole) ? 
-    <Outlet /> : <Navigate to="/login" state={{ from: location }} replace />
+  //console.log(auth.user)
+  //console.log(auth.role)
 
-};
 
-export default PrivateRoute;
+  return (
+    auth?.role === requiredRole
+        ? <Outlet />
+        : auth?.user
+            ? <Navigate to="/" state={{ from: location }} replace />
+            : <Navigate to="/login" state={{ from: location }} replace />
+);
+    // 'ADMIN2' === requiredRole
+    // ? <Outlet />
+    // : "asde" != null
+    //     ? <Navigate to="/admin/create-product" state={{ from: location }} replace />
+    //     : <Navigate to="/login" state={{ from: location }} replace />
+
+}

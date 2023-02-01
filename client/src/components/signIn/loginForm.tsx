@@ -37,7 +37,7 @@ export default function LoginForm() {
     password: "",
   };
 
-  return !isLoggedIn ? (
+  return (
     <Formik
       initialValues={initialValues}
       onSubmit={(values: User) => handleSubmit(values)}
@@ -97,7 +97,5 @@ export default function LoginForm() {
         </div>
       )}
     </Formik>
-  ) : (
-    <Navigate to={"/"} />
-  );
+  )
 }

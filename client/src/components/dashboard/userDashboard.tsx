@@ -1,3 +1,5 @@
+import { deleteUser } from "../../utils/services/axiosRequests";
+
 export interface UserList {
     id: number;
     firstName: string;
@@ -5,7 +7,6 @@ export interface UserList {
     email: string;
     role: string;
     enabled: boolean;
-    accountNonLocked: boolean;
   }
 
 const UserDashboard = ({
@@ -15,17 +16,21 @@ const UserDashboard = ({
     email,
     role,
     enabled,
-    accountNonLocked,
   }: UserList) => {
     return( 
-        <div>
-            <p>Name: {firstName}</p>
-            <p>Lastname: {lastName}</p>
-            <p>Email: {email}</p>
-            <p>Role: {role}</p>
-            <p>Enabled: {`${enabled}`}</p>
-            <p>Locked: {`${accountNonLocked}`}</p>
-        </div>
+        <tr key={id}>
+            <th>{id}</th>
+            <th>{firstName}</th>
+            <th>{lastName}</th>
+            <th>{email}</th>
+            <th>{role[0] + role.slice(1).toLowerCase()}</th>
+            <th>{`${enabled}`}</th>
+            <th>
+              <button className="btn" onClick={()=>{deleteUser()}}>
+                X
+              </button>
+            </th>
+        </tr>
     )
 }
 

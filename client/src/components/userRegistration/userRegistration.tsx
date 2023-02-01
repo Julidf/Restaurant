@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import User from "../../utils/interfaces/IUserReg";
 import { useNavigate } from "react-router-dom";
 import userFormValidation from "../../utils/validations/userFormValidation";
-import { response } from "express";
 
 export default function UserRegistration() {
   const navigate = useNavigate();

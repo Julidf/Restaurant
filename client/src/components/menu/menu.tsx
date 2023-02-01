@@ -7,8 +7,10 @@ export default function Menu() {
   const [state, setState] = useState<any[]>([]);
 
   const getApi = async () => {
-    const response = await axios.get(`/api/products`);
-    setState(response.data);
+    await axios
+      .get(`/api/products`)
+      .then((response) => setState(response.data))
+      .catch(error=>"No products found" + error.message)
   };
 
   useEffect(() => {
@@ -19,8 +21,8 @@ export default function Menu() {
     <div>
       <UserNavBar />
       <div className="all__products__container">
-        {!state
-          ? "loading..."
+        {!state.length
+          ? <h1>"There is no products to show..."</h1>
           : state.map((product) => <Card key={product.id} {...product} />)}
       </div>
     </div>

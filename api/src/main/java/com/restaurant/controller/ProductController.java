@@ -50,15 +50,15 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @DeleteMapping(path = "/products/{productId}")
+    @DeleteMapping(path = "/products/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteProductById(@PathVariable("productId") Long id) {
+    public void deleteProductById(@PathVariable("id") Long id) {
         this.productsService.deleteById(id);
     }
 
-    @PatchMapping(path = "/products/{productId}")
+    @PatchMapping(path = "/products/{id}")
     @Transactional
-    public void updateWithPatchById(@PathVariable("productId") Long id) {
+    public void updateWithPatchById(@PathVariable("id") Long id) {
 
     }
 

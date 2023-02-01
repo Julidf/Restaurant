@@ -59,7 +59,7 @@ public class User implements UserDetails {
         this.isEnabled = true;
         this.cart = new Cart(this.id);
     }
-    
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String role = this.getRole().getRoleName();

@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +35,22 @@ public class UserController {
         this.authService = authService;
     }
 
-    @GetMapping("/admin/users")
+    @GetMapping("/users")
     public Iterable<User> getAllUsers() {
         return this.userService.findAll();
+    }
+
+    @GetMapping(path = "/users/{id}")
+    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
+        if (id < 0 || id == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        Optional<User> user = this.userService.findById(id);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping("/login")
@@ -68,11 +82,12 @@ public class UserController {
         return ResponseEntity.ok(this.authService.register(user));
     }
 
-    @PatchMapping(path = "/admin/delete/{userId}")
-    public ResponseEntity<User> deleteEntity(@PathVariable("userId") Long id) {
+    @PatchMapping(path = "/users/{id}")
+    public ResponseEntity<User> deleteEntity(@PathVariable("id") Long id) {
         Optional<User> user = this.userService.findById(id);
         if (user.isPresent()){
-            user.get().setIsEnabled(false);
+            this.userService.UserLogicDeleteById(user.get());
+            this.userService.saveUser(user.get());
             return ResponseEntity.ok(user.get());
         }
         return ResponseEntity.badRequest().build();

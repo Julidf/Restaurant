@@ -10,3 +10,5 @@ export const getUserList = async () => {
   const response = await axios.get("/api/admin/users", config);
   return response.data;
 };
+
+export const deleteUser = async () => {};

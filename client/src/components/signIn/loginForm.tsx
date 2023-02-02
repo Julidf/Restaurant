@@ -1,36 +1,13 @@
-import axios from "axios";
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import User from "../../utils/interfaces/IUserLogin";
+import { loginUser } from "../../utils/services/axiosRequests";
 import validation from "../../utils/validations/loginValidation";
 import { useAuth } from "../navbar/useAuth";
 
 export default function LoginForm() {
-  let navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-  const goBack = () => navigate(-1);
   const { isLoggedIn } = useAuth();
-
-  const handleSubmit = async (values: User) => {
-    try {
-      const response = await axios.post(`/api/login`, values);
- 
-      if (!response.data.token){
-        throw new Error();
-      }
-
-      localStorage.setItem("token", response.data.token);
-      navigate(from, { replace: true });
-    } catch (e: any) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops! ",
-        text: "Incorrect Email or Password",
-      });
-    }
-  };
+  const navigate = useNavigate();
 
   const initialValues: User = {
     email: "",
@@ -40,7 +17,7 @@ export default function LoginForm() {
   return !isLoggedIn?(
     <Formik
       initialValues={initialValues}
-      onSubmit={(values: User) => handleSubmit(values)}
+      onSubmit={(values: User) => loginUser(values)}
       validationSchema={validation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (
@@ -90,7 +67,7 @@ export default function LoginForm() {
             <Link to={"/register"} className="btn">
               Register
             </Link>
-            <button type="button" onClick={goBack} className="btn">
+            <button type="button" onClick={()=>navigate(-1)} className="btn">
               Cancel
             </button>
           </Form>

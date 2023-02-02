@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { getUserList } from "../../utils/services/axiosRequests";
-import UserNavBar from "../navbar/userNavBar";
+import { getUserList } from "../../../utils/services/axiosRequests";
+import UserNavBar from "../../navbar/userNavBar";
 import UserDashboard from "./userDashboard";
 
 export default function UserList() {

@@ -9,7 +9,7 @@ import Landing from "./components/landing/landing";
 import Wrapper from "./components/wrapper/wrapper";
 import PrivateRoute from "./components/middleware/privateRoute";
 import ContactUs from "./components/contactUs/contactUs";
-import UserList from "./components/dashboard/userList";
+import UserList from "./components/dashboard/user/userList";
 
 function App() {
   return (

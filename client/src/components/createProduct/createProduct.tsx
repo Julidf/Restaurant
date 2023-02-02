@@ -1,39 +1,12 @@
-import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import Swal from "sweetalert2";
 import validation from "../../utils/validations/productValidation";
 import Product from "../../utils/interfaces/iProduct";
 import { Link } from "react-router-dom";
 import UserNavBar from "../navbar/userNavBar";
+import { ProductsubmitButtonHandler } from "../../utils/helpers";
 
 export default function CreateProduct() {
-  const token = localStorage.getItem("token");
-  const postProduct = async (product: Product) => {
-    await axios.post(`/api/admin/create-product`, product, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    });
-  };
-
-  async function submitButtonHandler(values: Product) {
-    try {
-      await postProduct(values);
-      Swal.fire({
-        icon: "success",
-        title: "Product created! ",
-        text: values.name + "added to the list.",
-      });
-    } catch (error) {
-      console.log(error);
-      Swal.fire({
-        icon: "error",
-        title: "Oops! ",
-        text: "Something went wrong, please try again",
-      });
-    }
-  }
-
+ 
   const initialValues: Product = {
     name: "",
     description: "",
@@ -46,7 +19,7 @@ export default function CreateProduct() {
     <UserNavBar />
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => submitButtonHandler(values)}
+      onSubmit={(values) => ProductsubmitButtonHandler(values)}
       validationSchema={validation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (

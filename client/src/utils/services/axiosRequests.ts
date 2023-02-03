@@ -10,7 +10,7 @@ const config = {
 };
 
 export const getUserList: Function = async () => {
-  const { data } = await axios.get("/api/admin/users", config);
+  const { data } = await axios.get("/api/users", config);
   return data;
 };
 

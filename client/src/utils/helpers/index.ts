@@ -38,7 +38,7 @@ export const userDashboardHandleDelete = (id: number) => {
     }
   };
 
-  export const UserHandleSubmit = async (user: User) => {
+  export const userLoginHandleSubmit = async (user: User) => {
     
     try {
       await loginUser(user)

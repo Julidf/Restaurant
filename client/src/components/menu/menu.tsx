@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./card";
-import UserNavBar from "../navbar/userNavBar";
+import NavbarHandler from "../navbar/navbarHandler";
 
 export default function Menu() {
   const [state, setState] = useState<any[]>([]);
@@ -19,7 +19,7 @@ export default function Menu() {
 
   return (
     <div>
-      <UserNavBar />
+      <NavbarHandler />
       <div className="all__products__container">
         {!state.length
           ? <h1>"There is no products to show..."</h1>

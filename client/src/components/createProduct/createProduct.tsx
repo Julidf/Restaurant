@@ -2,8 +2,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import validation from "../../utils/validations/productValidation";
 import Product from "../../utils/interfaces/iProduct";
 import { Link } from "react-router-dom";
-import UserNavBar from "../navbar/userNavBar";
 import { ProductsubmitButtonHandler } from "../../utils/helpers";
+import NavbarHandler from "../navbar/navbarHandler";
 
 export default function CreateProduct() {
  
@@ -16,7 +16,7 @@ export default function CreateProduct() {
   };
   return (
     <>
-    <UserNavBar />
+    <NavbarHandler />
     <Formik
       initialValues={initialValues}
       onSubmit={(values) => ProductsubmitButtonHandler(values)}

@@ -4,5 +4,5 @@ export default interface UserList {
     lastName: string;
     email: string;
     role: string;
-    enabled: boolean;
+    isEnabled: boolean;
   }

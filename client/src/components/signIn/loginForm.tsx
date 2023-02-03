@@ -1,6 +1,6 @@
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { UserHandleSubmit } from "../../utils/helpers";
+import { userLoginHandleSubmit } from "../../utils/helpers";
 import User from "../../utils/interfaces/IUserLogin";
 import validation from "../../utils/validations/loginValidation";
 import { useAuth } from "../navbar/useAuth";
@@ -11,7 +11,7 @@ export default function LoginForm() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const handleSubmit = async (user: User) => {
-    await UserHandleSubmit(user);
+    await userLoginHandleSubmit(user);
     navigate(from, { replace: true });
   };
 

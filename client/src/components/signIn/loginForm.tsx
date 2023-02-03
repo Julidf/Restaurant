@@ -1,23 +1,29 @@
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { UserHandleSubmit } from "../../utils/helpers";
 import User from "../../utils/interfaces/IUserLogin";
-import { loginUser } from "../../utils/services/axiosRequests";
 import validation from "../../utils/validations/loginValidation";
 import { useAuth } from "../navbar/useAuth";
 
 export default function LoginForm() {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const handleSubmit = async (user: User) => {
+    await UserHandleSubmit(user);
+    navigate(from, { replace: true });
+  };
 
   const initialValues: User = {
     email: "",
     password: "",
   };
 
-  return !isLoggedIn?(
+  return !isLoggedIn ? (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values: User) => loginUser(values)}
+      onSubmit={(values: User) => handleSubmit(values)}
       validationSchema={validation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (
@@ -67,13 +73,14 @@ export default function LoginForm() {
             <Link to={"/register"} className="btn">
               Register
             </Link>
-            <button type="button" onClick={()=>navigate(-1)} className="btn">
+            <button type="button" onClick={() => navigate(-1)} className="btn">
               Cancel
             </button>
           </Form>
         </div>
       )}
     </Formik>
-  ):
-  <Navigate to={"/"}/>
+  ) : (
+    <Navigate to={"/"} />
+  );
 }

@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import Product from "../interfaces/iProduct";
-import { deleteUser, postProduct } from "../services/axiosRequests";
+import User from "../interfaces/IUserLogin";
+import { deleteUser, loginUser, postProduct } from "../services/axiosRequests";
 
 export async function ProductsubmitButtonHandler(values: Product) {
   try {
@@ -36,3 +37,17 @@ export const userDashboardHandleDelete = (id: number) => {
       });
     }
   };
+
+  export const UserHandleSubmit = async (user: User) => {
+    
+    try {
+      await loginUser(user)
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops! ",
+        text: "Incorrect Email or Password",
+      });
+    }
+  };
+  

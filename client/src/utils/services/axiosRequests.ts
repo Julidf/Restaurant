@@ -1,12 +1,7 @@
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
-import Swal from "sweetalert2";
 import Product from "../interfaces/iProduct";
 import User from "../interfaces/IUserLogin";
 
-let navigate = useNavigate();
-const location = useLocation();
-const from = location.state?.from?.pathname || "/";
 const token = localStorage.getItem("token");
 const config = {
   headers: {
@@ -28,20 +23,8 @@ export const postProduct: Function = async (product: Product) => {
 };
 
 export const loginUser: Function = async (user: User) => {
-  try {
-    const { data } = await axios.post(`/api/login`, user);
-
-    if (!data.token) {
-      throw new Error();
-    }
-
-    localStorage.setItem("token", data.token);
-    navigate(from, { replace: true });
-  } catch (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops! ",
-      text: "Incorrect Email or Password",
-    });
-  }
+  const { data } = await axios.post(`/api/login`, user);
+  if (!data.token) throw new Error("Invalid email or password.");
+  localStorage.setItem("token", data.token);
+  return token;
 };

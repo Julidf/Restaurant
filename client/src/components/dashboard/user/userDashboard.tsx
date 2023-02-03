@@ -1,4 +1,4 @@
-import { deleteUser } from "../../utils/services/axiosRequests";
+import { deleteUser } from "../../../utils/services/axiosRequests";
 
 export interface UserList {
     id: number;
@@ -26,7 +26,7 @@ const UserDashboard = ({
             <th>{role[0] + role.slice(1).toLowerCase()}</th>
             <th>{`${enabled}`}</th>
             <th>
-              <button className="btn" onClick={()=>{deleteUser()}}>
+              <button className="btn" onClick={()=>{deleteUser(id)}}>
                 X
               </button>
             </th>

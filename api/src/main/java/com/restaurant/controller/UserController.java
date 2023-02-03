@@ -60,7 +60,7 @@ public class UserController {
         if (!user.isPresent()) {
             return ResponseEntity.ok(
                 UserAuthResponse.builder()
-                .responseMessage("Email doesn't exist!")
+                .responseMessage("Email doesn't exist")
                 .build()
             );
         }
@@ -73,7 +73,7 @@ public class UserController {
         if (existUser.isPresent()) {
             return ResponseEntity.ok(
                 UserAuthResponse.builder()
-                .responseMessage("Email already exist!")
+                .responseMessage("Email already exist")
                 .build()
                 );
         }

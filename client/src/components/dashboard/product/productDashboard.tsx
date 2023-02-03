@@ -1,7 +1,7 @@
-import UserNavBar from "../navbar/userNavBar"
-import "../../App.css";
+import "../../../App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import NavbarHandler from "../../navbar/navbarHandler";
 
 export default function ProductDashboard() {
 
@@ -26,7 +26,7 @@ export default function ProductDashboard() {
 
     return (
         <div>
-            <UserNavBar/>
+            <NavbarHandler/>
             <table className="table">
                 <thead>
                     <tr>

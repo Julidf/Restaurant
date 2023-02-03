@@ -11,6 +11,5 @@ public class UserAuthResponse {
 
     private String token;
     private String responseMessage;
-    private Integer responseStatus;
     
 }

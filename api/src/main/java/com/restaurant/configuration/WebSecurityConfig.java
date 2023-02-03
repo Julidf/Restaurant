@@ -32,9 +32,9 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
             .authorizeHttpRequests()
-            .requestMatchers("/login/**", "/register/**", "/products/**").permitAll()
+            .requestMatchers("/login/**", "/register/**", "/products/**", "/users/**").permitAll()
             .requestMatchers("/admin/**").hasRole("ADMIN")
-            .requestMatchers("/users/**").hasRole("ADMIN")
+            //.requestMatchers("/users/**").hasRole("ADMIN")
             .anyRequest().authenticated()
             .and()
             .cors().and().csrf().disable()

@@ -201,3 +201,36 @@ a:hover {
   height: 100vh;
   width: 100vw;
 }
+
+
+
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th,
+td {
+  border: 1px solid #ffffff;
+  text-align: left;
+  padding: 8px;
+  font-size: 32px;
+}
+th {
+  background-color: rgba(207, 193, 67, 0.267);
+}
+td {
+  background-color: rgba(207, 193, 67, 0.267);
+}
+form {
+  display: flex;
+  gap: 5px;
+}
+form td:last-child {
+  display: flex;
+  justify-content: space-evenly;
+}
+form * {
+  font-size: 28px;
+}

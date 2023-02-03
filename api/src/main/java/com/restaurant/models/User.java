@@ -52,7 +52,7 @@ public class User implements UserDetails {
     @OneToOne
     private Cart cart;
 
-    // Si modifico los atributos del User tengo que tambien modificar: el constructor, el mappeo y las validaciones
+    // Si modifico los atributos del User tengo que tambien modificar: el constructor, el mappeo, el DTO y las validaciones
     
     public User(){
         this.role = Role.ADMIN;

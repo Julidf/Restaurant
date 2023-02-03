@@ -1,11 +1,14 @@
 package com.restaurant.service;
 
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
 import com.restaurant.DTOs.ProductDto;
 import com.restaurant.models.Product;
@@ -37,22 +40,20 @@ public class ProductService {
     public Product saveProduct(Product product) {
         return this.productsRepository.save(product);
     }
-    
-    //Si no encuentra el producto ignora el delete
-    public void deleteById(Long id) {
-        this.productsRepository.deleteById(id);
-    }
 
-    public void LogicDeleteById(Long id) {
-        Optional<Product> product = this.findById(id);
-        
-        if (!product.isPresent()) {
-            product.get().setIsAvailable(false);
-        }
+    public void LogicDeleteById(Product product) {
+        product.setIsAvailable(false);
     }
     
-    public void updateWithPatchById(Long id){
-        //Product product = this.verifyProduct(id);
+    public Product updateProductByFields(Product product, Map<String, Object> fields) {
+        fields.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(Product.class, key);
+            if (field != null){
+                field.setAccessible(true);
+                ReflectionUtils.setField(field, product, value);
+            }
+        });
+        return this.saveProduct(product);
     }
     
     //Mapping a Product from a ProductDto
@@ -65,7 +66,6 @@ public class ProductService {
         product.setImage(dto.getImage());
         return product;
     }
-    
  
 
 }

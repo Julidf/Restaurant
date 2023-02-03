@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import LogButtonOption from "./logButtonOption";
+import ProductDashboard from "../dashboard/productDashboard";
 
 const UserNavBar = () => {
   return (
@@ -16,6 +17,9 @@ const UserNavBar = () => {
           Menu
         </NavLink>
         <LogButtonOption />
+        <NavLink to={"/products"} className="nav__btn" >
+          Products
+        </NavLink>
       </div>
     </div>
   );

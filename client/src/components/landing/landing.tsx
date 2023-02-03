@@ -1,13 +1,12 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import UserNavBar from "../navbar/userNavBar";
+import NavbarHandler from "../navbar/navbarHandler";
 
 export default function Landing() {
   const navigate = useNavigate();
   return (
     <>
       <div>
-        <UserNavBar />
+        <NavbarHandler />
       </div>
       <div className="landing__container">
         <h2 className="landing__title">Welcome</h2>

@@ -34,6 +34,7 @@ public class WebSecurityConfig {
             .authorizeHttpRequests()
             .requestMatchers("/login/**", "/register/**", "/products/**").permitAll()
             .requestMatchers("/admin/**").hasRole("ADMIN")
+            .requestMatchers("/users/**").hasRole("ADMIN")
             .anyRequest().authenticated()
             .and()
             .cors().and().csrf().disable()

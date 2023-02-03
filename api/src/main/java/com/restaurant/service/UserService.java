@@ -1,8 +1,10 @@
 package com.restaurant.service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,13 +34,31 @@ public class UserService implements UserDetailsService{
         return user;
     }
 
+    @Cacheable
+    public Iterable<User> findAll() {
+        return this.userRepository.findAll();
+    }
+
     public Optional<User> findByEmail(String email) {
         return this.userRepository.findByEmail(email);
+    }
+
+    public User verifyUser(Long id) throws NoSuchElementException {
+        return this.userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("The user with the id: " + id + " doesn't exists"));
+    }
+
+    public Optional<User> findById(Long id) {
+        return this.userRepository.findById(id);
     }
 
     public User saveUser(User user) {
         this.cartRepository.save(user.getCart());
         return this.userRepository.save(user);
+    }
+
+    public void UserLogicDeleteById(User user) {
+        //User user = this.verifyUser(id);
+        user.setIsEnabled(false);
     }
     
 

@@ -10,7 +10,6 @@ const PrivateRoute = ({ requiredRole }: requiredRole) => {
 
   return AuthCheck(requiredRole) ? 
     <Outlet /> : <Navigate to="/login" state={{ from: location }} replace />
-
 };
 
 export default PrivateRoute;

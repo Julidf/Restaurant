@@ -22,7 +22,7 @@ public class ProductService {
     }
     
     public Product verifyProduct(Long id) throws NoSuchElementException {
-        return this.productsRepository.findById(id).orElseThrow(() -> new NoSuchElementException("The product with the id: " + id + " don't exists"));
+        return this.productsRepository.findById(id).orElseThrow(() -> new NoSuchElementException("The product with the id: " + id + " doesn't exists"));
     }
     
     @Cacheable

@@ -42,6 +42,9 @@ public class User implements UserDetails {
 
     @Column
     private String password; 
+
+    @Column
+    private Boolean isEnabled;
     
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -53,9 +56,10 @@ public class User implements UserDetails {
     
     public User(){
         this.role = Role.ADMIN;
+        this.isEnabled = true;
         this.cart = new Cart(this.id);
     }
-    
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String role = this.getRole().getRoleName();

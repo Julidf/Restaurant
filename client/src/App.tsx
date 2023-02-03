@@ -9,6 +9,7 @@ import Landing from "./components/landing/landing";
 import Wrapper from "./components/wrapper/wrapper";
 import PrivateRoute from "./components/middleware/privateRoute";
 import ContactUs from "./components/contactUs/contactUs";
+import UserList from "./components/dashboard/user/userList";
 
 function App() {
   return (
@@ -20,11 +21,11 @@ function App() {
           <Route path="/register" element={<UserRegistration />} />
           <Route path="/contact-us" element={<ContactUs />} />
           
-          <Route element={<PrivateRoute requiredRole='ADMIN'/>}>
+          <Route element={<PrivateRoute requiredRole="ADMIN"/>}>
             <Route path="/admin/create-product" element={<CreateProduct/>}/>
-            <Route path="/admin/users" element={<CreateProduct /> } />
+            <Route path="/admin/users" element={<UserList /> } />
             <Route path="/admin/orders" element={<CreateProduct />} />
-            <Route path="/admin/product" element={<CreateProduct />} />
+            <Route path="/admin/products" element={<CreateProduct />} />
           </Route>
 
         </Routes>

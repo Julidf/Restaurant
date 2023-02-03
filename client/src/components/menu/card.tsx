@@ -1,13 +1,5 @@
 import { Link } from "react-router-dom";
-
-export interface Props {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  stock: number;
-  image: string;
-}
+import Menu from "../../utils/interfaces/IMenu";
 
 export default function Card({
   id,
@@ -16,14 +8,12 @@ export default function Card({
   price,
   stock,
   image,
-}: Props) {
+}: Menu) {
   return (
     <div className="product__container">
-      <div className="img__container">
-        <Link to={`/products/${id}`}>
-          <img className="img__container" src={image} alt={name} />
-        </Link>
-      </div>
+      <Link className="img__container" to={`/products/${id}`}>
+        <img className="img__props" src={image} alt={name} />
+      </Link>
       <div className="product__info">
         <h4>{name}</h4>
         <p>{description}</p>

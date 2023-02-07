@@ -34,8 +34,13 @@ export const postProduct: Function = async (product: Product) => {
   await axios.post(`/api/admin/create-product`, product, config);
 };
 
-export const patchProduct: Function = async (product: Product, id:number) => {
+export const patchProduct: Function = async (product: Product, id: number) => {
   await axios.patch(`/api/products/${id}`, product, config);
+};
+
+export const getProducts: Function = async () => {
+  const { data } = await axios.get("/api/products");
+  return data;
 };
 
 export const loginUser: Function = async (user: User) => {

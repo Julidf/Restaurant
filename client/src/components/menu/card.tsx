@@ -1,34 +1,19 @@
 import { Link } from "react-router-dom";
+import { productsProps } from "../../utils/interfaces/iProductProps";
 
-export interface Props {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  stock: number;
-  image: string;
-}
-
-export default function Card({
-  id,
-  name,
-  description,
-  price,
-  stock,
-  image,
-}: Props) {
+export default function Card( product: productsProps ) {
   return (
     <div className="product__container">      
-        <Link className="img__container" to={`/products/${id}`}>
-          <img className="img__props" src={image} alt={name} />
+        <Link className="img__container" to={`/products/${product.id}`}>
+          <img className="img__props" src={product.image} alt={product.name} />
         </Link>
       <div className="product__info">
-        <h4>{name}</h4>
-        <p>{description}</p>
+        <h4>{product.name}</h4>
+        <p>{product.description}</p>
       </div>
       <div>
-        <p>{price}</p>
-        <p>{stock}</p>
+        <p>{product.price}</p>
+        <p>{product.stock}</p>
       </div>
     </div>
   );

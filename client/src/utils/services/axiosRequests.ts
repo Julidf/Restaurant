@@ -1,6 +1,7 @@
 import axios from "axios";
-import Product from "../interfaces/iProduct";
+import Product from "../interfaces/iCreateProduct";
 import User from "../interfaces/IUserLogin";
+import { productsProps } from "../interfaces/iProductProps";
 import UserReg from "../interfaces/IUserReg";
 
 const token = localStorage.getItem("token");
@@ -38,4 +39,13 @@ export const loginUser: Function = async (user: User) => {
 
 export const postProduct: Function = async (product: Product) => {
   await axios.post(`/api/admin/create-product`, product, config);
+};
+
+export const patchProduct: Function = async (product: Product, id: number) => {
+  await axios.patch(`/api/products/${id}`, product, config);
+};
+
+export const getProducts = async () => {
+  const response = await axios.get("/api/products");
+  return response;
 };

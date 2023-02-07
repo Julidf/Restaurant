@@ -1,21 +1,21 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import NavbarHandler from "../../navbar/navbarHandler";
 import validation from "../../../utils/validations/modifyUserValidation";
 import { modifyUserBtnHandler } from "../../../utils/helpers";
 import UserReg from "../../../utils/interfaces/IUserReg";
-import { getUserById } from "../../../utils/services/axiosRequests";
 
 export default function ModifyUser() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const userProps = getUserById(id)
+  const location = useLocation();
+  const userList: UserReg = location.state?.product;
 
   const initialValues: UserReg = {
-    firstname: userProps.firstname,
-    lastname: userProps.lastname,
-    email: userProps.email,
-    password: userProps.password,
+    firstname: userList.firstname,
+    lastname: userList.lastname,
+    email: userList.email,
+    password: userList.password,
   };
   return (
     <>

@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
-import Product from "../interfaces/iProduct";
+import Product from "../interfaces/iCreateProduct";
 import User from "../interfaces/IUserLogin";
-import { deleteUser, loginUser, postProduct } from "../services/axiosRequests";
+import { deleteUser, loginUser, patchProduct, postProduct } from "../services/axiosRequests";
 
 export async function ProductsubmitButtonHandler(values: Product) {
   try {
@@ -9,10 +9,26 @@ export async function ProductsubmitButtonHandler(values: Product) {
     Swal.fire({
       icon: "success",
       title: "Product created! ",
-      text: values.name + "added to the list.",
+      text: values.name + " added to the list.",
     });
   } catch (error) {
-    console.log(error);
+    Swal.fire({
+      icon: "error",
+      title: "Oops! ",
+      text: "Something went wrong, please try again",
+    });
+  }
+}
+
+export async function ProductModifyButtonHandler (values: Product, id:number) {
+  try {
+    await patchProduct(values, id);
+    Swal.fire({
+      icon: "success",
+      title: "Product modify! ",
+      text: values.name + " has been modify.",
+    });
+  } catch (error) {
     Swal.fire({
       icon: "error",
       title: "Oops! ",

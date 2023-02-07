@@ -1,9 +1,9 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import validation from "../../utils/validations/productValidation";
-import Product from "../../utils/interfaces/iProduct";
+import validation from "../../../utils/validations/productValidation";
+import Product from "../../../utils/interfaces/iCreateProduct";
 import { Link } from "react-router-dom";
-import { ProductsubmitButtonHandler } from "../../utils/helpers";
-import NavbarHandler from "../navbar/navbarHandler";
+import { ProductsubmitButtonHandler } from "../../../utils/helpers";
+import NavbarHandler from "../../navbar/navbarHandler";
 
 export default function CreateProduct() {
  

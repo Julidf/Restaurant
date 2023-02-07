@@ -218,10 +218,10 @@ td {
   font-size: 32px;
 }
 th {
-  background-color: rgba(207, 193, 67, 0.267);
+  background-color: rgba(43, 37, 25, 0.89);
 }
 td {
-  background-color: rgba(207, 193, 67, 0.267);
+  background-color: rgba(97, 91, 36, 0.705);
 }
 form {
   display: flex;
@@ -233,4 +233,49 @@ form td:last-child {
 }
 form * {
   font-size: 28px;
+}
+
+
+.modify_button {
+  background-color: white;
+  color: black;
+  float: left;
+  cursor: pointer;
+}
+.modify_button:hover {
+  background-color: rgba(255, 166, 0, 0.379);
+  color: white;
+}
+
+.filter_input {
+  background-color: rgba(68, 1, 1, 0.447);
+  width: 40%;
+  padding: 13px 10px;
+  border: 2px solid rgb(131, 70, 70);
+  border-radius: 4px;
+  font-size: 15px;
+  margin: auto;
+}
+.filter_container {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  position: relative;
+}
+
+.create_product_button {
+  background-color: rgba(68, 1, 1, 0.447);
+  border: 2px solid rgb(131, 70, 70);
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  left: 10%;
+  width: 10%;
+  padding: 13px 0;
+  
+}
+.create_product_button:hover {
+  background-color: rgba(255, 166, 0, 0.379);
 }

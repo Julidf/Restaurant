@@ -25,7 +25,7 @@ public class ProductDto {
 
     @Min(0)
     @NotNull(message = "THE PRICE MUST NOT BE NULL")
-    private Float price;
+    private Integer price;
 
     @Min(0)
     @NotNull(message = "THE STOCK MUST NOT BE NULL")

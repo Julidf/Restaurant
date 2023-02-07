@@ -30,22 +30,17 @@ export const modifyUser: Function = async (user: UserReg, id: string) => {
   await axios.patch(`/api/users/${id}`, user, config);
 };
 
+export const postProduct: Function = async (product: Product) => {
+  await axios.post(`/api/admin/create-product`, product, config);
+};
+
+export const patchProduct: Function = async (product: Product, id:number) => {
+  await axios.patch(`/api/products/${id}`, product, config);
+};
+
 export const loginUser: Function = async (user: User) => {
   const { data } = await axios.post(`/api/login`, user);
   if (!data.token) throw new Error("Invalid email or password.");
   localStorage.setItem("token", data.token);
   return token;
-};
-
-export const postProduct: Function = async (product: Product) => {
-  await axios.post(`/api/admin/create-product`, product, config);
-};
-
-export const patchProduct: Function = async (product: Product, id: number) => {
-  await axios.patch(`/api/products/${id}`, product, config);
-};
-
-export const getProducts = async () => {
-  const response = await axios.get("/api/products");
-  return response;
 };

@@ -1,7 +1,7 @@
 import "./App.css";
 import Menu from "./components/menu/menu";
 import { Route, Routes } from "react-router-dom";
-import CreateProduct from "./components/createProduct/createProduct";
+import CreateProduct from "./components/dashboard/product/createProduct";
 import UserRegistration from "./components/userRegistration/userRegistration";
 import LoginForm from "./components/signIn/loginForm";
 import Landing from "./components/landing/landing";
@@ -11,26 +11,28 @@ import ContactUs from "./components/contactUs/contactUs";
 import UserList from "./components/dashboard/user/userList";
 import ProductDashboard from "./components/dashboard/product/productDashboard";
 import ModifyUser from "./components/dashboard/user/modifyUser";
+import ProductModify from "./components/dashboard/product/productModify";
 
 function App() {
   return (
-    <Wrapper>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<UserRegistration />} />
-        <Route path="/contact-us" element={<ContactUs />} />
+      <Wrapper>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<UserRegistration />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          
+          <Route element={<PrivateRoute requiredRole="ADMIN"/>}>
+            <Route path="/admin/products" element={<ProductDashboard />} />
+            <Route path={"/admin/products/:id"} element={<ProductModify/>}/>
+            <Route path="/admin/products/create-product" element={<CreateProduct/>}/>
+            <Route path="/admin/users" element={<UserList /> } />
+            <Route path="/admin/orders" element={<CreateProduct />} />
+          </Route>
 
-        <Route element={<PrivateRoute requiredRole="ADMIN" />}>
-          <Route path="/admin/create-product" element={<CreateProduct />} />
-          <Route path="/admin/users" element={<UserList />} />
-          <Route path="/admin/orders" element={<CreateProduct />} />
-          <Route path="/admin/products" element={<ProductDashboard />} />
-          <Route path="/admin/modifyUser/:id" element={<ModifyUser />} />
-        </Route>
-      </Routes>
-    </Wrapper>
+        </Routes>
+      </Wrapper>
   );
 }
 

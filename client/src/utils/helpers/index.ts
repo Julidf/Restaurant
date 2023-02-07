@@ -37,7 +37,6 @@ export async function ProductModifyButtonHandler (values: Product, id:number) {
       text: values.name + " has been modified.",
     });
   } catch (error) {
-    console.log(error);
     Swal.fire({
       icon: "error",
       title: "Oops! ",

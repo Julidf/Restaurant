@@ -3,7 +3,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { userLoginHandleSubmit } from "../../utils/helpers";
 import User from "../../utils/interfaces/IUserLogin";
 import validation from "../../utils/validations/loginValidation";
-import { useAuth } from "../navbar/useAuth";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 export default function LoginForm() {
   const { isLoggedIn } = useAuth();

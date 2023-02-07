@@ -59,10 +59,9 @@ public class UserController {
         Optional<User> user = this.userService.findByEmail(request.getEmail());
         if (!user.isPresent()) {
             return ResponseEntity.ok(
-                UserAuthResponse.builder()
-                .responseMessage("Email doesn't exist")
-                .build()
-            );
+                    UserAuthResponse.builder()
+                            .responseMessage("Email doesn't exist")
+                            .build());
         }
         return ResponseEntity.ok(this.authService.login(request, user.get()));
     }
@@ -72,10 +71,9 @@ public class UserController {
         Optional<User> existUser = this.userService.findByEmail(request.getEmail());
         if (existUser.isPresent()) {
             return ResponseEntity.ok(
-                UserAuthResponse.builder()
-                .responseMessage("Email already exist")
-                .build()
-                );
+                    UserAuthResponse.builder()
+                            .responseMessage("Email already exist")
+                            .build());
         }
         User user = authService.mappingFromRequest(request);
         return ResponseEntity.ok(this.authService.register(user));
@@ -87,7 +85,7 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
         Optional<User> user = this.userService.findById(id);
-        if (user.isPresent()){
+        if (user.isPresent()) {
             this.userService.deleteUser(user.get());
             return ResponseEntity.ok(user.get());
         }
@@ -95,17 +93,16 @@ public class UserController {
     }
 
     @PatchMapping(path = "/users/{id}")
-    public ResponseEntity<User> updateUserByFields(@PathVariable("id") Long id, @RequestBody Map<String, Object> fields) {
+    public ResponseEntity<User> updateUserByFields(@PathVariable("id") Long id,
+            @RequestBody Map<String, Object> fields) {
         if (id < 0 || id == null || fields.isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
         Optional<User> user = this.userService.findById(id);
-        if (user.isPresent()){ 
+        if (user.isPresent()) {
             return ResponseEntity.ok(this.userService.updateUserByFields(user.get(), fields));
         }
         return ResponseEntity.notFound().build();
     }
-
-
 
 }

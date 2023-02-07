@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import Menu from "./components/menu/menu";
 import { Route, Routes } from "react-router-dom";
@@ -11,26 +10,27 @@ import PrivateRoute from "./components/middleware/privateRoute";
 import ContactUs from "./components/contactUs/contactUs";
 import UserList from "./components/dashboard/user/userList";
 import ProductDashboard from "./components/dashboard/product/productDashboard";
+import ModifyUser from "./components/dashboard/user/modifyUser";
 
 function App() {
   return (
-      <Wrapper>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<UserRegistration />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          
-          <Route element={<PrivateRoute requiredRole="ADMIN"/>}>
-            <Route path="/admin/create-product" element={<CreateProduct/>}/>
-            <Route path="/admin/users" element={<UserList /> } />
-            <Route path="/admin/orders" element={<CreateProduct />} />
-            <Route path="/admin/products" element={<ProductDashboard />} />
-          </Route>
+    <Wrapper>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<UserRegistration />} />
+        <Route path="/contact-us" element={<ContactUs />} />
 
-        </Routes>
-      </Wrapper>
+        <Route element={<PrivateRoute requiredRole="ADMIN" />}>
+          <Route path="/admin/create-product" element={<CreateProduct />} />
+          <Route path="/admin/users" element={<UserList />} />
+          <Route path="/admin/orders" element={<CreateProduct />} />
+          <Route path="/admin/products" element={<ProductDashboard />} />
+          <Route path="/admin/modifyUser/:id" element={<ModifyUser />} />
+        </Route>
+      </Routes>
+    </Wrapper>
   );
 }
 

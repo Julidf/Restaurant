@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useAuth } from "./useAuth";
+import { useAuth } from "../../utils/hooks/useAuth";
 
 export default function LogButtonOption() {
   const {isLoggedIn, logOut} = useAuth();

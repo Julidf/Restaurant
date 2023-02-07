@@ -1,4 +1,4 @@
-export default interface User {
+export default interface UserReg {
   firstname: string;
   lastname: string;
   email: string;

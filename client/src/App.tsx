@@ -11,7 +11,7 @@ import PrivateRoute from "./components/middleware/privateRoute";
 import ContactUs from "./components/contactUs/contactUs";
 import UserList from "./components/dashboard/user/userList";
 import ProductDashboard from "./components/dashboard/product/productDashboard";
-import ProductModify from "./components/dashboard/product/productModify";
+import ProductModify from "./components/dashboard/product/modifyProduct";
 
 function App() {
   return (

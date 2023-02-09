@@ -1,7 +1,7 @@
 import axios from "axios";
 import Product from "../interfaces/iCreateProduct";
 import User from "../interfaces/IUserLogin";
-import { productsProps } from "../interfaces/iProductProps";
+import { ProductsProps } from "../interfaces/iProductProps";
 
 const token = localStorage.getItem("token");
 const config = {
@@ -26,6 +26,10 @@ export const postProduct: Function = async (product: Product) => {
 export const patchProduct: Function = async (product: Product, id:number) => {
   await axios.patch(`/api/products/${id}`, product, config);
 };
+
+export const deleteProduct: Function = (id: number) => {
+  axios.delete(`/api/products/${id}`, config);
+}
 
 export const loginUser: Function = async (user: User) => {
   const { data } = await axios.post(`/api/login`, user);

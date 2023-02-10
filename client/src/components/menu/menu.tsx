@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./card";
 import NavbarHandler from "../navbar/navbarHandler";
+import './styles.css';
 
 export default function Menu() {
   const [state, setState] = useState<any[]>([]);
@@ -21,7 +22,7 @@ export default function Menu() {
     <div>
       <NavbarHandler />
       <div className="all__products__container">
-        {!state.length
+        {!state
           ? <h1>"There is no products to show..."</h1>
           : state.map((product) => <Card key={product.id} {...product} />)}
       </div>

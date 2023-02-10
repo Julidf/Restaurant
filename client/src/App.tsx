@@ -11,7 +11,7 @@ import ContactUs from "./components/contactUs/contactUs";
 import UserList from "./components/dashboard/user/userList";
 import ProductDashboard from "./components/dashboard/product/productDashboard";
 import ModifyUser from "./components/dashboard/user/modifyUser";
-import ProductModify from "./components/dashboard/product/productModify";
+import ProductModify from "./components/dashboard/product/modifyProduct";
 
 function App() {
   return (

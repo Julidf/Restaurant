@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import Product from "../interfaces/iCreateProduct";
+import { DBProduct } from "../interfaces/productInterfaces";
 import User from "../interfaces/IUserLogin";
 import UserReg from "../interfaces/IUserReg";
 import {
@@ -10,7 +10,7 @@ import {
   postProduct,
 } from "../services/axiosRequests";
 
-export async function ProductsubmitButtonHandler(values: Product) {
+export async function ProductsubmitButtonHandler(values: DBProduct) {
   try {
     await postProduct(values);
     Swal.fire({
@@ -28,21 +28,23 @@ export async function ProductsubmitButtonHandler(values: Product) {
   }
 }
 
-export async function ProductModifyButtonHandler (values: Product, id:number) {
+export async function ProductModifyButtonHandler (values: DBProduct, id:number) {
   try {
     await patchProduct(values, id);
     Swal.fire({
       icon: "success",
       title: "Product modify! ",
-      text: values.name + " has been modified.",
+      text: values.name + " has been modify.",
     });
-  } catch (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops! ",
-      text: "Something went wrong, please try again",
-    });
-  }
+      return response;
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops! ",
+          text: "Something went wrong, please try again",
+        });
+      }
+    }
 }
 
 export const userDashboardHandleDelete = (id: number) => {

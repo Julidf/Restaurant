@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ProductsProps } from "../../utils/interfaces/iProductProps";
+import { ProductsProps } from "../../utils/interfaces/productInterfaces";
 import './styles.css';
 
 export default function Card(product: ProductsProps) {

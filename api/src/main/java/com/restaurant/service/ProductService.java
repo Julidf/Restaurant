@@ -41,8 +41,9 @@ public class ProductService {
         return this.productsRepository.save(product);
     }
 
-    public void LogicDeleteById(Product product) {
+    public Product LogicDeleteById(Product product) {
         product.setIsAvailable(false);
+        return this.productsRepository.save(product);
     }
     
     public Product updateProductByFields(Product product, Map<String, Object> fields) {

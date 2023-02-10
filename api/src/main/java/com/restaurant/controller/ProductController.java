@@ -56,8 +56,7 @@ public class ProductController {
         }
         Optional<Product> product = this.productService.findById(id);
         if (product.isPresent()) {
-            this.productService.LogicDeleteById(product.get());
-            return ResponseEntity.ok(product.get());
+            return ResponseEntity.ok(this.productService.LogicDeleteById(product.get()));
         }
         return ResponseEntity.notFound().build();
     }

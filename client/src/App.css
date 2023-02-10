@@ -6,7 +6,7 @@
 }
 
 body {
-  /* position: fixed; */
+  position: fixed;
   background-image: url("https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg");
   image-rendering: pixelated;
   top: 0;

@@ -1,8 +1,8 @@
 import "../../../App.css";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import NavbarHandler from "../../navbar/navbarHandler";
 import {useNavigate } from "react-router-dom";
-import { ProductsProps } from "../../../utils/interfaces/iProductProps";
+import { ProductsProps } from "../../../utils/interfaces/productInterfaces";
 import { getProducts } from "../../../utils/services/axiosRequests";
 
 function ProductDashboard() {
@@ -11,13 +11,12 @@ function ProductDashboard() {
     const [search, setSearch] = useState("");
     const navigate = useNavigate();
     const results = !search ? productList : productList.filter((product: ProductsProps)=> product.name.toLowerCase().includes(search.toLowerCase()))
-    const [edit, setEdit] = useState(false); 
-    
+
     useEffect ( () => {
-        getProductos();
+        getProductList();
     }, [])
     
-    const getProductos = async () => {
+    const getProductList = async () => {
         const response = await getProducts();
         setProductList(response.data)
     }
@@ -25,6 +24,7 @@ function ProductDashboard() {
     const handleEditClick = (product: ProductsProps) => {
         navigate(`/admin/products/${product.id}`, { state: { product } });
     };
+    
     const handleCreateClick = () => {
         navigate("/admin/products/create-product");
     };
@@ -35,13 +35,13 @@ function ProductDashboard() {
     }
 
     return (
-        <div>
+        <Fragment>
             <NavbarHandler/>
             <div className="filter_container">
-                <button type="button" onClick={() => handleCreateClick()} className="create_product_button">Create New Product</button>
+                <button type="button" onClick={() => handleCreateClick()} className="create_product_button">Create Product</button>
                 <input value={search} type="text" placeholder="Search by name" onChange={searcher} className="filter_input"/>
             </div>
-            <table className="table">
+            <table className="table_product">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -55,18 +55,18 @@ function ProductDashboard() {
                 <tbody>
                     {results.map((product: ProductsProps) => (
                         <tr key={product.id}>
-                            <td>{product.id}</td>
-                            <td>{product.name}</td>
-                            <td>{product.description}</td>
-                            <td>{`${product.price} $`}</td>
-                            <td>{`${product.stock} u.`}</td>
-                            <td>{`${product.isAvailable}`}</td>
-                            <td><button type="button" onClick={() => handleEditClick(product)} className="modify_product_button">EDIT</button></td>
+                            <td className="td_product">{product.id}</td>
+                            <td className="td_product">{product.name}</td>
+                            <td className="td_product">{product.description}</td>
+                            <td className="td_product">{`${product.price} $`}</td>
+                            <td className="td_product">{`${product.stock} u.`}</td>
+                            <td className="td_product">{`${product.isAvailable}`}</td>
+                            <td className="td_product_button"><button type="button" onClick={() => handleEditClick(product)} className="modify_product_button">EDIT</button></td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-        </div>
+        </Fragment>
     );
 }
 

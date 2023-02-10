@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
-import Product from "../interfaces/iCreateProduct";
+import { DBProduct } from "../interfaces/productInterfaces";
 import User from "../interfaces/IUserLogin";
 import { deleteUser, loginUser, patchProduct, postProduct, deleteProduct } from "../services/axiosRequests";
 
-export async function ProductsubmitButtonHandler(values: Product) {
+export async function ProductsubmitButtonHandler(values: DBProduct) {
   try {
     await postProduct(values);
     Swal.fire({
@@ -20,7 +20,7 @@ export async function ProductsubmitButtonHandler(values: Product) {
   }
 }
 
-export async function ProductModifyButtonHandler (values: Product, id:number) {
+export async function ProductModifyButtonHandler (values: DBProduct, id:number) {
   try {
     await patchProduct(values, id);
     Swal.fire({
@@ -37,21 +37,34 @@ export async function ProductModifyButtonHandler (values: Product, id:number) {
   }
 }
 
-export function tryDeleteProduct(id: number, productName: string) {
-  try {
-    deleteProduct(id);
-    Swal.fire({
-      icon: "success",
-      title: "Product modify! ",
-      text: productName + " has been DELETED.",
-    });
-  } catch (error) {
-    Swal.fire({
-      icon: "error",
-      title: "Oops! ",
-      text: "Something went wrong, please try again",
-    });
-  }
+function confirmDeleteAlert(){
+  const value = Swal.fire({
+    icon: "question",
+    title: "Are you sure you want to delete this item?",
+    showConfirmButton: true,
+    showDenyButton: true,
+  })
+  return value
+}
+
+export async function tryDeleteProduct(id: number, productName: string){
+  if ((await confirmDeleteAlert()).value === true) {
+      try {
+      const response = await deleteProduct(id);
+      Swal.fire({
+        icon: "success",
+        title: "Product DELETED! ",
+        text: productName.toUpperCase() + " has been deleted.",
+      });
+      return response;
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops! ",
+          text: "Something went wrong, please try again",
+        });
+      }
+    }
 }
 
 export const userDashboardHandleDelete = (id: number) => {
@@ -72,7 +85,6 @@ export const userDashboardHandleDelete = (id: number) => {
   };
 
   export const userLoginHandleSubmit = async (user: User) => {
-    
     try {
       await loginUser(user)
     } catch (error) {

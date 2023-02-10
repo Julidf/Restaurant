@@ -1,7 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import validation from "../../../utils/validations/productValidation";
-import Product from "../../../utils/interfaces/iCreateProduct";
-import { Link } from "react-router-dom";
+import { DBProduct } from "../../../utils/interfaces/productInterfaces";
 import { ProductsubmitButtonHandler } from "../../../utils/helpers";
 import NavbarHandler from "../../navbar/navbarHandler";
 import { Fragment } from "react";
@@ -11,7 +10,7 @@ export default function CreateProduct() {
 
   const navigate = useNavigate();
 
-  const initialValues: Product = {
+  const initialValues: DBProduct = {
     name: "",
     description: "",
     price: 0,

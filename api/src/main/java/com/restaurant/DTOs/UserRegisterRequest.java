@@ -18,11 +18,11 @@ public class UserRegisterRequest {
 
     @NotNull(message = "THE NAME MUST NOT BE NULL")
     @Size(min = CARACT_MIN, max = CARACT_MAX, message = "THE NAME SIZE MUST BE BETWEEN " + CARACT_MIN + " AND " + CARACT_MAX + " CHARACTERS")
-    private String firstname;
+    private String firstName;
 
     @NotNull(message = "THE LASTNAME MUST NOT BE NULL")
     @Size(min = CARACT_MIN, max = CARACT_MAX, message = "THE LASTNAME SIZE MUST BE BETWEEN " + CARACT_MIN + " AND " + CARACT_MAX + " CHARACTERS")
-    private String lastname;
+    private String lastName;
 
     @NotNull(message = "THE EMAIL MUST NOT BE NULL")
     @Size(min = CARACT_MIN, max = CARACT_MAX, message = "THE EMAIL SIZE MUST BE BETWEEN " + CARACT_MIN + " AND " + CARACT_MAX + " CHARACTERS")

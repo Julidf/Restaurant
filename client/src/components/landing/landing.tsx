@@ -16,10 +16,6 @@ export default function Landing() {
           alt="landing"
         />
         <div className="landing__btn__container">
-          <button className="btn" id="landing__btn" onClick={() => navigate("/login")}>
-            Login
-          </button>
-
           <button className="btn" id="landing__btn" onClick={() => navigate("/menu")}>
             Our menu
           </button>

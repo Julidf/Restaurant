@@ -26,7 +26,7 @@ public class Product {
     private String description;
 
     @Column
-    private Float price;
+    private Integer price;
 
     @Column
     private Integer stock;
@@ -43,7 +43,7 @@ public class Product {
         this.isAvailable = true;
     }
 
-    public Product(String name, String description, Float price, Integer stock, String image) {
+    public Product(String name, String description, Integer price, Integer stock, String image) {
         this.name = name;
         this.description = description;
         this.price = price;

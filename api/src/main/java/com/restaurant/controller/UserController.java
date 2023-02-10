@@ -1,9 +1,11 @@
 package com.restaurant.controller;
 
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,8 +60,7 @@ public class UserController {
         if (!user.isPresent()) {
             return ResponseEntity.ok(
                 UserAuthResponse.builder()
-                .responseMessage("Email doesn't exist!")
-                .responseStatus(401)
+                .responseMessage("Email doesn't exist")
                 .build()
             );
         }
@@ -72,8 +73,7 @@ public class UserController {
         if (existUser.isPresent()) {
             return ResponseEntity.ok(
                 UserAuthResponse.builder()
-                .responseMessage("Email already exist!")
-                .responseStatus(401)
+                .responseMessage("Email already exist")
                 .build()
                 );
         }
@@ -81,15 +81,31 @@ public class UserController {
         return ResponseEntity.ok(this.authService.register(user));
     }
 
-    @PatchMapping(path = "/users/{id}")
-    public ResponseEntity<User> deleteEntity(@PathVariable("id") Long id) {
+    @DeleteMapping(path = "/users/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) {
+        if (id < 0 || id == null) {
+            return ResponseEntity.badRequest().build();
+        }
         Optional<User> user = this.userService.findById(id);
         if (user.isPresent()){
-            this.userService.UserLogicDeleteById(user.get());
-            this.userService.saveUser(user.get());
+            this.userService.deleteUser(user.get());
             return ResponseEntity.ok(user.get());
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.notFound().build();
     }
+
+    @PatchMapping(path = "/users/{id}")
+    public ResponseEntity<User> updateUserByFields(@PathVariable("id") Long id, @RequestBody Map<String, Object> fields) {
+        if (id < 0 || id == null || fields.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        Optional<User> user = this.userService.findById(id);
+        if (user.isPresent()){ 
+            return ResponseEntity.ok(this.userService.updateUserByFields(user.get(), fields));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+
 
 }

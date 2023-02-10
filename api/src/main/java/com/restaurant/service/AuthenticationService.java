@@ -39,7 +39,6 @@ public class AuthenticationService {
         return UserAuthResponse.builder()
             .token(jwtToken)
             .responseMessage("Login successfully")
-            .responseStatus(200)
             .build();
     }
 
@@ -49,17 +48,20 @@ public class AuthenticationService {
         return UserAuthResponse.builder()
             .token(jwtToken)
             .responseMessage("Register successfully")
-            .responseStatus(200)
             .build();
     }
 
     public User mappingFromRequest (UserRegisterRequest request) {
         User user = new User();
-        user.setFirstName(request.getFirstname());
-        user.setLastName(request.getLastname());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         return user;
+    }
+
+    public String encriptPassword (String password) {
+        return passwordEncoder.encode(password);
     }
     
 }

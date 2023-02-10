@@ -35,6 +35,7 @@ public class WebSecurityConfig {
             .requestMatchers("/login/**", "/register/**", "/products/**").permitAll()
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .requestMatchers("/users/**").hasRole("ADMIN")
+            //.requestMatchers("/users/{id}").hasRole("USER")
             .anyRequest().authenticated()
             .and()
             .cors().and().csrf().disable()
@@ -42,7 +43,6 @@ public class WebSecurityConfig {
             .and()
             .authenticationProvider(this.authenticationProvider())
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
 

@@ -3,7 +3,10 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+
+@AllArgsConstructor
 @Data
 public class ProductDto {
 
@@ -22,7 +25,7 @@ public class ProductDto {
 
     @Min(0)
     @NotNull(message = "THE PRICE MUST NOT BE NULL")
-    private Float price;
+    private Integer price;
 
     @Min(0)
     @NotNull(message = "THE STOCK MUST NOT BE NULL")

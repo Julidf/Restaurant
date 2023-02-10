@@ -1,6 +1,7 @@
 package com.restaurant.service;
 
-import java.util.NoSuchElementException;
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,10 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
 import com.restaurant.models.User;
 import com.restaurant.repository.CartRepo;
@@ -19,11 +23,13 @@ public class UserService implements UserDetailsService{
     
     private final CartRepo cartRepository;
     private final UserRepo userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public UserService(UserRepo userRepository, CartRepo cartRepository) {
         this.userRepository = userRepository;
         this.cartRepository = cartRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     @Override
@@ -43,10 +49,6 @@ public class UserService implements UserDetailsService{
         return this.userRepository.findByEmail(email);
     }
 
-    public User verifyUser(Long id) throws NoSuchElementException {
-        return this.userRepository.findById(id).orElseThrow(() -> new NoSuchElementException("The user with the id: " + id + " doesn't exists"));
-    }
-
     public Optional<User> findById(Long id) {
         return this.userRepository.findById(id);
     }
@@ -56,9 +58,24 @@ public class UserService implements UserDetailsService{
         return this.userRepository.save(user);
     }
 
-    public void UserLogicDeleteById(User user) {
-        //User user = this.verifyUser(id);
+    public void deleteUser(User user) {
         user.setIsEnabled(false);
+        this.saveUser(user);
+    }
+
+    public User updateUserByFields(User user, Map<String, Object> fields) {
+        fields.forEach((key, value) -> {
+            Field field = ReflectionUtils.findField(User.class, key);
+            if (field != null){
+                field.setAccessible(true);
+                if (field.getName() == "password"){
+                    user.setPassword(this.passwordEncoder.encode(value.toString()));
+                } else {
+                    ReflectionUtils.setField(field, user, value);
+                }
+            }
+        });
+        return this.saveUser(user);
     }
     
 

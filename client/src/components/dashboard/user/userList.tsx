@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getUserList } from "../../../utils/services/axiosRequests";
-import NavbarHandler from "../../navbar/navbarHandler";
+import UserNavBar from "../../navbar/userNavBar";
 import UserDashboard from "./userDashboard";
 
 export default function UserList() {
@@ -17,13 +17,13 @@ export default function UserList() {
 
   return (
     <div>
-      <NavbarHandler />
+      <UserNavBar />
       <table>
         <thead>
           <tr>
             <th>id</th>
             <th>Name</th>
-            <th>Lastname</th>
+            <th>Lastname</th> 
             <th>Email</th>
             <th>Role</th>
             <th>Active</th>

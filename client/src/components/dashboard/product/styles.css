@@ -1,4 +1,4 @@
-/* PRODUCT DASHBOARD AND PRODUCT MODIFY THINGS */
+
 .table_product {
   border-collapse: collapse;
   width: 98%;
@@ -8,6 +8,8 @@ th {
   border: 1px solid #ffffff;
   padding: 8px;
   font-size: 22px;
+  font-family:monospace;
+  font-weight: 1;
 }
 .td_product {
   background-color: rgba(97, 91, 36, 0.705);
@@ -32,7 +34,6 @@ form * {
   font-size: 28px;
 }
 
-
 .input_modify_product {
   width: 100%;
   border: 0.5px solid #ffffff;
@@ -53,6 +54,7 @@ form * {
 .modify_product_button:hover {
   background-color: rgba(255, 166, 0, 0.379);
 }
+
 .save_product_button {
   background-color: rgb(68, 67, 67);
   margin-left: 10px;
@@ -63,6 +65,7 @@ form * {
 .save_product_button:hover {
   background-color: rgba(255, 166, 0, 0.379);
 }
+
 .cancel_product_button {
   background-color: rgb(68, 67, 67);
   margin-left: 10px;
@@ -82,6 +85,7 @@ form * {
   justify-content: center;
   position: relative;
 }
+
 .delete_product_button {
   background-color: rgba(68, 1, 1, 0.447);
   border: 1px solid rgb(131, 70, 70);
@@ -95,7 +99,6 @@ form * {
 .delete_product_button:hover {
   background-color: rgba(255, 166, 0, 0.379);
 }
-
 
 .create_product_button {
   background-color: rgba(68, 1, 1, 0.447);
@@ -122,6 +125,7 @@ form * {
   font-size: 15px;
   margin: auto;
 }
+
 .filter_container {
   display: flex;
   align-items: center;
@@ -130,4 +134,14 @@ form * {
   position: relative;
 }
   
-  
+.order_modify_button {
+  background-color: rgba(43, 37, 25, 0.89);
+  border: none;
+  padding: 8px;
+  font-size: 22px;
+  font-family:monospace;
+  font-weight: 1;
+}
+.order_modify_button:hover {
+  cursor: pointer;
+}

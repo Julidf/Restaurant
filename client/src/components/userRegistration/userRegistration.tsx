@@ -1,26 +1,16 @@
-import axios from "axios";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { UserRegister } from "../../utils/interfaces/userInterfaces";
 import Swal from "sweetalert2";
-import User from "../../utils/interfaces/IUserReg";
 import { useNavigate } from "react-router-dom";
-import userFormValidation from "../../utils/validations/userFormValidation";
+import userRegisterValidation from "../../utils/validations/userRegisterValidation";
+import { registerUser } from "../../utils/services/axiosRequests";
 
 export default function UserRegistration() {
   const navigate = useNavigate();
-  const goBack = () => navigate(-1);
 
-  const createUser = async (user: User) => {
-    const response = await axios.post(`/api/register`, user);
-    if (response.data.token){
-      return response.data.token;
-    } else {
-      throw new Error("ERROR");
-    }
-  };
-
-  async function submitButtonHandler(values: User) {
+  async function submitButtonHandler(values: UserRegister) {
     try {
-      await createUser(values);
+      await registerUser(values);
       Swal.fire({
         icon: "success",
         title: "User registered! ",
@@ -36,17 +26,18 @@ export default function UserRegistration() {
     }
   }
 
-  const initialValues: User = {
+  const initialValues: UserRegister = {
     firstname: "",
     lastname: "",
     email: "",
     password: "",
   };
+  
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values: User) => submitButtonHandler(values)}
-      validationSchema={userFormValidation}
+      onSubmit={(values: UserRegister) => submitButtonHandler(values)}
+      validationSchema={userRegisterValidation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (
         <div className="form__container">
@@ -127,7 +118,7 @@ export default function UserRegistration() {
             <button type="submit" className="btn">
               Create
             </button>
-            <button type="button" onClick={goBack} className="btn">
+            <button type="button" onClick={() => navigate(-1)} className="btn">
               Cancel
             </button>
           </Form>

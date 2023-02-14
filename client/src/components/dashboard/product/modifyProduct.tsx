@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../../menu/card";
-import { ProductsProps, ProductsPropsIndexable, DBProduct, convertToSendable, convertToIndexable} from "../../../utils/interfaces/productInterfaces";
+import { ProductsPropsIndexable, DBProduct, convertToSendable, convertToIndexable, SendableProduct} from "../../../utils/interfaces/productInterfaces";
 import { ProductModifyButtonHandler, tryDeleteProduct } from "../../../utils/helpers";
 import { Fragment, useState } from "react";
 import NavbarHandler from "../../navbar/navbarHandler";
@@ -9,7 +9,7 @@ import './styles.css';
 export default function ProductModify () {
     const location = useLocation();
     const navigate = useNavigate();
-    let product: ProductsProps = location.state?.product;
+    let product: DBProduct = location.state?.product;
     const [editableProduct, setEditableProduct] = useState<ProductsPropsIndexable>(convertToIndexable(product));
     const [isEditing, setIsEditing] = useState(false);
 
@@ -18,13 +18,13 @@ export default function ProductModify () {
     }
     
     function handleSaveClick () {
-        let sendableProduct: DBProduct = convertToSendable(editableProduct);
+        let sendableProduct: SendableProduct = convertToSendable(editableProduct);
         sendableProduct = parseInputs(sendableProduct)
         ProductModifyButtonHandler(sendableProduct, editableProduct.id)
         setIsEditing(false)
     }
     
-    function parseInputs (productSendable: DBProduct): DBProduct{
+    function parseInputs (productSendable: SendableProduct): SendableProduct{
         if (typeof productSendable.price === "string") {
             productSendable.price = parseInt(productSendable.price);
         }
@@ -59,7 +59,7 @@ export default function ProductModify () {
                 description={editableProduct.description} 
                 price={editableProduct.price} 
                 stock={editableProduct.stock} 
-                image={editableProduct.image} 
+                image={editableProduct.image}
                 isAvailable={editableProduct.isAvailable} />
                 : 
                 <p>The product couldn't be found</p>}

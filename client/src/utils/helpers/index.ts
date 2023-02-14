@@ -1,9 +1,9 @@
 import Swal from "sweetalert2";
-import { DBProduct } from "../interfaces/productInterfaces";
-import User from "../interfaces/IUserLogin";
+import { SendableProduct } from "../interfaces/productInterfaces";
+import { UserLogin } from "../interfaces/userInterfaces";
 import { deleteUser, loginUser, patchProduct, postProduct, deleteProduct } from "../services/axiosRequests";
 
-export async function ProductsubmitButtonHandler(values: DBProduct) {
+export async function ProductsubmitButtonHandler(values: SendableProduct) {
   try {
     await postProduct(values);
     Swal.fire({
@@ -20,7 +20,7 @@ export async function ProductsubmitButtonHandler(values: DBProduct) {
   }
 }
 
-export async function ProductModifyButtonHandler (values: DBProduct, id:number) {
+export async function ProductModifyButtonHandler (values: SendableProduct, id:number) {
   try {
     await patchProduct(values, id);
     Swal.fire({
@@ -84,7 +84,7 @@ export const userDashboardHandleDelete = (id: number) => {
     }
   };
 
-  export const userLoginHandleSubmit = async (user: User) => {
+  export const userLoginHandleSubmit = async (user: UserLogin) => {
     try {
       await loginUser(user)
     } catch (error) {

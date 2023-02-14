@@ -1,4 +1,3 @@
-import React from "react";
 import "./App.css";
 import Menu from "./components/menu/menu";
 import { Route, Routes } from "react-router-dom";
@@ -9,9 +8,9 @@ import Landing from "./components/landing/landing";
 import Wrapper from "./components/wrapper/wrapper";
 import PrivateRoute from "./components/middleware/privateRoute";
 import ContactUs from "./components/contactUs/contactUs";
-import UserList from "./components/dashboard/user/userList";
 import ProductDashboard from "./components/dashboard/product/productDashboard";
 import ProductModify from "./components/dashboard/product/modifyProduct";
+import UserDashboard from "./components/dashboard/user/userDashboard";
 
 function App() {
   return (
@@ -27,7 +26,7 @@ function App() {
             <Route path="/admin/products" element={<ProductDashboard />} />
             <Route path={"/admin/products/:id"} element={<ProductModify/>}/>
             <Route path="/admin/products/create-product" element={<CreateProduct/>}/>
-            <Route path="/admin/users" element={<UserList /> } />
+            <Route path="/admin/users" element={<UserDashboard /> } />
             <Route path="/admin/orders" element={<CreateProduct />} />
           </Route>
 

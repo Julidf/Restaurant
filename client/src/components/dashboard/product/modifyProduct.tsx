@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import Card from "../../menu/card";
 import { ProductsPropsIndexable, DBProduct, convertToSendable, convertToIndexable, SendableProduct} from "../../../utils/interfaces/productInterfaces";
-import { ProductModifyButtonHandler, tryDeleteProduct } from "../../../utils/helpers";
+import { ProductModifyButtonHandler, tryDeleteProduct, tryRestoreProduct } from "../../../utils/helpers";
 import { Fragment, useState } from "react";
 import NavbarHandler from "../../navbar/navbarHandler";
 import './styles.css';
@@ -11,10 +11,18 @@ export default function ProductModify () {
     const navigate = useNavigate();
     let product: DBProduct = location.state?.product;
     const [editableProduct, setEditableProduct] = useState<ProductsPropsIndexable>(convertToIndexable(product));
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState<boolean>(false);
+    const [isAvailable, setIsAvailable] = useState<boolean>(product.isAvailable);
 
     async function handleDeleteClick() {
         await tryDeleteProduct(editableProduct.id, editableProduct.name)
+        setIsAvailable(false)
+    }
+
+    async function handleRestoreClick() {
+        const value = {isAvailable: true}
+        await tryRestoreProduct(editableProduct.id, value, editableProduct.name)
+        setIsAvailable(true)
     }
     
     function handleSaveClick () {
@@ -49,20 +57,27 @@ export default function ProductModify () {
     return (
         <Fragment>
             <NavbarHandler/>
-            <div className="card_modify_container">
-                <button onClick={handleDeleteClick} className="delete_product_button"> DELETE </button>
-                {product 
-                ? 
-                <Card 
-                id={editableProduct.id} 
-                name={editableProduct.name} 
-                description={editableProduct.description} 
-                price={editableProduct.price} 
-                stock={editableProduct.stock} 
-                image={editableProduct.image}
-                isAvailable={editableProduct.isAvailable} />
-                : 
-                <p>The product couldn't be found</p>}
+            <div className="top_modify_product">
+                <div className="modify_button_container">
+                    {isAvailable
+                     ? <button onClick={handleDeleteClick} className="delete_product_button"> DELETE </button>
+                     : <button onClick={handleRestoreClick} className="delete_product_button"> RESTORE </button>}
+                </div>
+                <div className="modify_card_container">
+                    {product 
+                    ? 
+                    <Card 
+                    id={editableProduct.id} 
+                    name={editableProduct.name} 
+                    description={editableProduct.description} 
+                    price={editableProduct.price} 
+                    stock={editableProduct.stock} 
+                    image={editableProduct.image}
+                    isAvailable={editableProduct.isAvailable} />
+                    : 
+                    <p>The product couldn't be found</p>}
+                </div>
+                
             </div>
             <table className="table_product">
                 <thead>

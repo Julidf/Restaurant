@@ -3,6 +3,7 @@ import { Fragment, useEffect, useState } from "react";
 import NavbarHandler from "../../navbar/navbarHandler";
 import { useNavigate } from "react-router-dom";
 import { getUsers } from "../../../utils/services/axiosRequests";
+import './styles.css';
 
 const UserDashboard = () => {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ const UserDashboard = () => {
               <td className="td_product">{user.email}</td>
               <td className="td_product">{user.role}</td>
               <td className="td_product">{`${user.isEnabled}`}</td>
-              <td className="td_product_button"><button type="button" onClick={() => handleEditClick(user)} className="modify_product_button">EDIT</button></td>
+              <td className="td_product_button"><button type="button" onClick={() => handleEditClick(user)} className="modify_product_button">HANDLE</button></td>
             </tr>
           ))}
         </tbody>

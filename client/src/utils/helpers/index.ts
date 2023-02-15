@@ -37,10 +37,10 @@ export async function ProductModifyButtonHandler (values: SendableProduct, id:nu
   }
 }
 
-function confirmDeleteAlert(){
+function confirmAlert(){
   const value = Swal.fire({
     icon: "question",
-    title: "Are you sure you want to delete this item?",
+    title: "Are you sure you to continue?",
     showConfirmButton: true,
     showDenyButton: true,
   })
@@ -48,7 +48,7 @@ function confirmDeleteAlert(){
 }
 
 export async function tryDeleteProduct(id: number, productName: string){
-  if ((await confirmDeleteAlert()).value === true) {
+  if ((await confirmAlert()).value === true) {
       try {
       const response = await deleteProduct(id);
       Swal.fire({
@@ -66,6 +66,27 @@ export async function tryDeleteProduct(id: number, productName: string){
       }
     }
 }
+
+export async function tryRestoreProduct(id: number, value: {}, productName: string){
+  if ((await confirmAlert()).value === true) {
+      try {
+      const response = await patchProduct(value, id);
+      Swal.fire({
+        icon: "success",
+        title: "Product RESTORED! ",
+        text: productName.toUpperCase() + " has been restored.",
+      });
+      return response;
+      } catch (error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops! ",
+          text: "Something went wrong, please try again",
+        });
+      }
+    }
+}
+
 
 export const userDashboardHandleDelete = (id: number) => {
     try {

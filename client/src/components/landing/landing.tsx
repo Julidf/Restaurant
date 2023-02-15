@@ -6,14 +6,12 @@ export default function Landing() {
   const navigate = useNavigate();
   return (
     <Fragment>
-      <div>
-        <NavbarHandler />
-      </div>
+      <NavbarHandler />
       <div className="landing__container">
         <h2 className="landing__title">Welcome</h2>
         <img
           className="landing__image"
-          src="../logo.gif"
+          src="../loguito.jpg"
           alt="landing"
         />
         <div className="landing__btn__container">

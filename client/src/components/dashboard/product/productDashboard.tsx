@@ -49,25 +49,29 @@ function ProductDashboard() {
     return (
         <Fragment>
             <NavbarHandler/>
-            <div className="filter_container">
-                <button type="button" onClick={() => handleCreateClick()} className="create_product_button">Create Product</button>
-                <input value={search} type="text" placeholder="Search by name" onChange={searcher} className="filter_input"/>
+            <div className="top_product_dashboard">
+                <div className="button_container">
+                    <button type="button" onClick={() => handleCreateClick()} className="create_product_button">Create</button>
+                </div>
+                <div className="filter_container">
+                    <input value={search} type="text" placeholder="Search by name" onChange={searcher} className="filter_input"/>
+                </div>
             </div>
             <table className="table_product">
-                <thead>
+                <thead className="thead_product">
                     <tr>
-                        <th><button onClick={() => orderBy("id")} type="button" className="order_modify_button">ID</button></th>
-                        <th><button onClick={() => orderBy("name")} type="button" className="order_modify_button">NAME</button></th>
-                        <th>DESCRIPTION</th>
-                        <th><button onClick={() => orderBy("price")} type="button" className="order_modify_button">PRICE</button></th>
-                        <th><button onClick={() => orderBy("stock")} type="button" className="order_modify_button">STOCK</button></th>
-                        <th><button onClick={() => orderBy("isAvailable")} type="button" className="order_modify_button">AVAILABLE</button></th>
+                        <th className="th_product"><button onClick={() => orderBy("id")} type="button" className="order_modify_button">ID</button></th>
+                        <th className="th_product"><button onClick={() => orderBy("name")} type="button" className="order_modify_button">NAME</button></th>
+                        <th className="th_product">DESCRIPTION</th>
+                        <th className="th_product"><button onClick={() => orderBy("price")} type="button" className="order_modify_button">PRICE</button></th>
+                        <th className="th_product"><button onClick={() => orderBy("stock")} type="button" className="order_modify_button">STOCK</button></th>
+                        <th className="th_product"><button onClick={() => orderBy("isAvailable")} type="button" className="order_modify_button">AVAILABLE</button></th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="tbody_product">
                     {results.map((product: DBProduct) => (
-                        <tr key={product.id}>
-                            <td className="td_product">{product.id}</td>
+                        <tr className="tr_product" key={product.id}>
+                            <td className="td_product_id">{product.id}</td>
                             <td className="td_product">{product.name}</td>
                             <td className="td_product">{product.description}</td>
                             <td className="td_product">{`$${product.price}`}</td>

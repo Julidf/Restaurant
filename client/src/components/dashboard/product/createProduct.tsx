@@ -1,6 +1,6 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import validation from "../../../utils/validations/productValidation";
-import { DBProduct } from "../../../utils/interfaces/productInterfaces";
+import { SendableProduct } from "../../../utils/interfaces/productInterfaces";
 import { ProductsubmitButtonHandler } from "../../../utils/helpers";
 import NavbarHandler from "../../navbar/navbarHandler";
 import { Fragment } from "react";
@@ -10,7 +10,7 @@ export default function CreateProduct() {
 
   const navigate = useNavigate();
 
-  const initialValues: DBProduct = {
+  const initialValues: SendableProduct = {
     name: "",
     description: "",
     price: 0,

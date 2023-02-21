@@ -13,6 +13,12 @@ const AdminNavBar = () => {
       <NavLink className="nav-btn" to={"/admin/orders"}>
         List of Orders
       </NavLink>
+      <NavLink to={"/menu"} className="nav__btn" >
+          Menu
+      </NavLink>
+      <NavLink to={"/"} className="nav__btn" >
+          /Jolie
+      </NavLink>
       <LogButtonOption />
     </div>
   );

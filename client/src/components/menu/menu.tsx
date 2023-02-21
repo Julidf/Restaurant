@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import Card from "./card";
 import NavbarHandler from "../navbar/navbarHandler";
@@ -19,13 +19,13 @@ export default function Menu() {
   }, []);
 
   return (
-    <div>
+    <Fragment>
       <NavbarHandler />
-      <div className="all__products__container">
+      <div className="all_products_container">
         {!state
           ? <h1>"There is no products to show..."</h1>
           : state.map((product) => <Card key={product.id} {...product} />)}
       </div>
-    </div>
+    </Fragment>
   );
 }

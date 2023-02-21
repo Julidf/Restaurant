@@ -1,8 +1,7 @@
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { userLoginHandleSubmit } from "../../utils/helpers";
-import { useAuth } from "../../utils/hooks/useAuth";
-import User from "../../utils/interfaces/IUserLogin";
+import { UserLogin } from "../../utils/interfaces/userInterfaces";
 import validation from "../../utils/validations/loginValidation";
 
 export default function LoginForm() {
@@ -12,12 +11,12 @@ export default function LoginForm() {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const handleSubmit = async (user: User) => {
+  const handleSubmit = async (user: UserLogin) => {
     await userLoginHandleSubmit(user);
     navigate(from, { replace: true });
   };
 
-  const initialValues: User = {
+  const initialValues: UserLogin = {
     email: "",
     password: "",
   };
@@ -25,7 +24,7 @@ export default function LoginForm() {
   return !isLoggedIn ? (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values: User) => handleSubmit(values)}
+      onSubmit={(values: UserLogin) => handleSubmit(values)}
       validationSchema={validation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (

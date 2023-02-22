@@ -25,9 +25,9 @@ const UserDashboard = () => {
       navigate(`/admin/users/${user.id}`, { state: { user } });
   };
   
-  const handleCreateClick = () => {
-    navigate("/admin/products/create-user");
-  };
+  // const handleCreateClick = () => {
+  //   navigate("/admin/products/create-user");
+  // };
 
   const searcher = (event: React.ChangeEvent<HTMLInputElement>) => {
       event.preventDefault();

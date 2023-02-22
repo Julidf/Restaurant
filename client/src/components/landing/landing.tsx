@@ -11,7 +11,7 @@ export default function Landing() {
         <h2 className="landing__title">Welcome</h2>
         <img
           className="landing__image"
-          src="../loguito.jpg"
+          src="../loguito.png"
           alt="landing"
         />
         <div className="landing__btn__container">

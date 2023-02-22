@@ -33,6 +33,7 @@ body {
   align-items: center;
   align-content: center;
   text-align: center;
+  margin-top: 5rem;
 }
 
 .landing__title{
@@ -40,8 +41,8 @@ body {
 }
 
 .landing__image{
-  width: 95%;
-  height: 80%;
+  width: 40%;
+  height: 50%;
   border-radius: 5px;
 }
 
@@ -101,6 +102,7 @@ h3{
 #textarea{
   width:300px;
   height: 170px;
+  resize: none;
 }
 
 .form__error {

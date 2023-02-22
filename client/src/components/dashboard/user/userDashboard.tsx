@@ -11,22 +11,19 @@ import "./styles.css";
 const UserDashboard = () => {
   const navigate = useNavigate();
   const [userList, setUserList] = useState<UserPropsIndexable[]>([]);
-  const [search, setSearch] = useState<string>("");
-  const results = !search
-    ? userList
-    : userList.filter((user: DBUser) =>
-        user.email.toLowerCase().includes(search.toLowerCase())
-      );
-  const [sortAscending, setSortAscending] = useState<boolean>(true);
+const [search, setSearch] = useState<string>("");
+const results = !search ? userList : userList.filter((user: DBUser)=> user.email.toLowerCase().includes(search.toLowerCase()))
+const [sortAscending, setSortAscending] = useState<boolean>(true);
 
-  useEffect(() => {
-    getUserList();
-  }, []);
+  useEffect ( () => {
+      getUserList();
+  }, [])
 
   const getUserList = async () => {
     const response = await getUsers();
-    setUserList(response.data);
-  };
+    setUserList(response.data)
+}
+>>>>>>> e352db3c74bc341971f1a14a18be1a805c30b30f
 
   const handleEditClick = (user: DBUser) => {
     navigate(`/admin/users/${user.id}`, { state: { user } });

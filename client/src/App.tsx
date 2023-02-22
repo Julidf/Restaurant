@@ -9,6 +9,7 @@ import Wrapper from "./components/wrapper/wrapper";
 import PrivateRoute from "./components/middleware/privateRoute";
 import ContactUs from "./components/contactUs/contactUs";
 import ProductDashboard from "./components/dashboard/product/productDashboard";
+import ModifyUser from "./components/dashboard/user/modifyUser";
 import ProductModify from "./components/dashboard/product/modifyProduct";
 import UserDashboard from "./components/dashboard/user/userDashboard";
 

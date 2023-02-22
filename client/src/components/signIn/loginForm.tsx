@@ -6,7 +6,6 @@ import validation from "../../utils/validations/loginValidation";
 import { useAuth } from "../navbar/useAuth";
 
 export default function LoginForm() {
-  
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

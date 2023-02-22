@@ -22,14 +22,17 @@ export const postProduct: Function = async (product: DBProduct) => {
   await axios.post(`/api/admin/create-product`, product, config);
 };
 
-export const patchProduct: Function = async (product: DBProduct, id:number) => {
+export const patchProduct: Function = async (
+  product: DBProduct,
+  id: number
+) => {
   await axios.patch(`/api/products/${id}`, product, config);
 };
 
 export const deleteProduct: Function = async (id: number) => {
   const response = await axios.delete(`/api/products/${id}`, config);
-  return response
-}
+  return response;
+};
 
 export const loginUser: Function = async (user: UserLogin) => {
   const { data } = await axios.post(`/api/login`, user);
@@ -38,9 +41,9 @@ export const loginUser: Function = async (user: UserLogin) => {
   return token;
 };
 
-export const registerUser: Function = async (user: UserRegister)  => {
+export const registerUser: Function = async (user: UserRegister) => {
   const response = await axios.post(`/api/register`, user);
-  if (response.data.token){
+  if (response.data.token) {
     return response.data.token;
   } else {
     throw new Error("Error in the registerUser method");
@@ -48,6 +51,6 @@ export const registerUser: Function = async (user: UserRegister)  => {
 };
 
 export const getProducts = async () => {
-  const response = await axios.get('/api/products')
+  const response = await axios.get("/api/products");
   return response;
 };

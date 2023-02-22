@@ -9,13 +9,13 @@ export default function Landing() {
       <NavbarHandler />
       <div className="landing__container">
         <h2 className="landing__title">Welcome</h2>
-        <img
-          className="landing__image"
-          src="../loguito.jpg"
-          alt="landing"
-        />
+        <img className="landing__image" src="../loguito.png" alt="landing" />
         <div className="landing__btn__container">
-          <button className="btn" id="landing__btn" onClick={() => navigate("/menu")}>
+          <button
+            className="btn"
+            id="landing__btn"
+            onClick={() => navigate("/menu")}
+          >
             Our menu
           </button>
         </div>

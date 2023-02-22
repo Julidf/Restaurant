@@ -14,24 +14,26 @@ import UserDashboard from "./components/dashboard/user/userDashboard";
 
 function App() {
   return (
-      <Wrapper>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<UserRegistration />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          
-          <Route element={<PrivateRoute requiredRole="ADMIN"/>}>
-            <Route path="/admin/products" element={<ProductDashboard />} />
-            <Route path={"/admin/products/:id"} element={<ProductModify/>}/>
-            <Route path="/admin/products/create-product" element={<CreateProduct/>}/>
-            <Route path="/admin/users" element={<UserDashboard /> } />
-            <Route path="/admin/orders" element={<CreateProduct />} />
-          </Route>
+    <Wrapper>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<UserRegistration />} />
+        <Route path="/contact-us" element={<ContactUs />} />
 
-        </Routes>
-      </Wrapper>
+        <Route element={<PrivateRoute requiredRole="ADMIN" />}>
+          <Route path="/admin/products" element={<ProductDashboard />} />
+          <Route path={"/admin/products/:id"} element={<ProductModify />} />
+          <Route
+            path="/admin/products/create-product"
+            element={<CreateProduct />}
+          />
+          <Route path="/admin/users" element={<UserDashboard />} />
+          <Route path="/admin/orders" element={<CreateProduct />} />
+        </Route>
+      </Routes>
+    </Wrapper>
   );
 }
 

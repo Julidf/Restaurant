@@ -7,7 +7,6 @@ import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateProduct() {
-
   const navigate = useNavigate();
 
   const initialValues: SendableProduct = {
@@ -40,11 +39,13 @@ export default function CreateProduct() {
                   className="form__input"
                   value={values.name}
                   onChange={handleChange}
-                  validate={validateOnChange} />
+                  validate={validateOnChange}
+                />
                 <ErrorMessage
                   name="name"
                   component="span"
-                  className="form__error" />
+                  className="form__error"
+                />
               </label>
 
               <label htmlFor="description" className="form__label">
@@ -56,11 +57,13 @@ export default function CreateProduct() {
                   autoComplete="off"
                   className="form__input"
                   value={values.description}
-                  onChange={handleChange} />
+                  onChange={handleChange}
+                />
                 <ErrorMessage
                   name="description"
                   component="span"
-                  className="form__error" />
+                  className="form__error"
+                />
               </label>
 
               <label htmlFor="price" className="form__label">
@@ -74,11 +77,13 @@ export default function CreateProduct() {
                   className="form__input"
                   value={values.price === 0 ? "" : values.price}
                   onChange={handleChange}
-                  validate={validateOnChange} />
+                  validate={validateOnChange}
+                />
                 <ErrorMessage
                   name="price"
                   component="span"
-                  className="form__error" />
+                  className="form__error"
+                />
               </label>
 
               <label htmlFor="stock" className="form__label">
@@ -90,11 +95,13 @@ export default function CreateProduct() {
                   autoComplete="off"
                   className="form__input"
                   value={values.stock === 0 ? "" : values.stock}
-                  onChange={handleChange} />
+                  onChange={handleChange}
+                />
                 <ErrorMessage
                   name="stock"
                   component="span"
-                  className="form__error" />
+                  className="form__error"
+                />
               </label>
 
               <label htmlFor="image" className="form__label">
@@ -106,11 +113,13 @@ export default function CreateProduct() {
                   autoComplete="off"
                   className="form__input"
                   value={values.image}
-                  onChange={handleChange} />
+                  onChange={handleChange}
+                />
                 <ErrorMessage
                   name="image"
                   component="span"
-                  className="form__error" />
+                  className="form__error"
+                />
               </label>
 
               <button type="submit" className="btn">

@@ -32,7 +32,7 @@ export default function UserRegistration() {
     email: "",
     password: "",
   };
-  
+
   return (
     <Formik
       initialValues={initialValues}

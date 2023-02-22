@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "./useAuth";
 
 export default function LogButtonOption() {
-  const {isLoggedIn, logOut} = useAuth();
+  const { isLoggedIn, logOut } = useAuth();
 
   return isLoggedIn ? (
     <NavLink to={"/"} className="nav__btn" onClick={() => logOut()}>

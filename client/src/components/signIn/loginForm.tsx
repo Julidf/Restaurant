@@ -3,10 +3,8 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { userLoginHandleSubmit } from "../../utils/helpers";
 import { UserLogin } from "../../utils/interfaces/userInterfaces";
 import validation from "../../utils/validations/loginValidation";
-import { useAuth } from "../navbar/useAuth";
 
 export default function LoginForm() {
-  
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();

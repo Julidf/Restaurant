@@ -8,8 +8,11 @@ interface requiredRole {
 const PrivateRoute = ({ requiredRole }: requiredRole) => {
   const location = useLocation();
 
-  return AuthCheck(requiredRole) ? 
-    <Outlet /> : <Navigate to="/login" state={{ from: location }} replace />
+  return AuthCheck(requiredRole) ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" state={{ from: location }} replace />
+  );
 };
 
 export default PrivateRoute;

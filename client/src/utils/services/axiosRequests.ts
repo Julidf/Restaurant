@@ -9,6 +9,11 @@ const config = {
   },
 };
 
+export const getProducts = async () => {
+  const response = await axios.get('/api/products')
+  return response;
+};
+
 export const getUsers = async () => {
   const response = await axios.get("/api/users", config);
   return response;
@@ -23,7 +28,8 @@ export const postProduct: Function = async (product: DBProduct) => {
 };
 
 export const patchProduct: Function = async (product: DBProduct, id:number) => {
-  await axios.patch(`/api/products/${id}`, product, config);
+  const response = await axios.patch(`/api/products/${id}`, product, config);
+  return response;
 };
 
 export const deleteProduct: Function = async (id: number) => {
@@ -47,7 +53,3 @@ export const registerUser: Function = async (user: UserRegister)  => {
   }
 };
 
-export const getProducts = async () => {
-  const response = await axios.get('/api/products')
-  return response;
-};

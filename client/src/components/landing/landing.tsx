@@ -8,7 +8,7 @@ export default function Landing() {
     <Fragment>
       <NavbarHandler />
       <div className="landing__container">
-        <h2 className="landing__title">Welcome</h2>
+        <h2 className="landing__title"></h2>
         <img
           className="landing__image"
           src="../loguito.jpg"

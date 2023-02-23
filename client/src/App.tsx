@@ -11,6 +11,7 @@ import ContactUs from "./components/contactUs/contactUs";
 import ProductDashboard from "./components/dashboard/product/productDashboard";
 import ProductModify from "./components/dashboard/product/modifyProduct";
 import UserDashboard from "./components/dashboard/user/userDashboard";
+import { UserProfile } from "./components/profile/userProfile";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<UserRegistration />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/my-account" element={<UserProfile />} />
           
           <Route element={<PrivateRoute requiredRole="ADMIN"/>}>
             <Route path="/admin/products" element={<ProductDashboard />} />

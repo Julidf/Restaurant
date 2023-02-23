@@ -2,26 +2,27 @@ import "../../../App.css";
 import { Fragment, useEffect, useState } from "react";
 import NavbarHandler from "../../navbar/navbarHandler";
 import {useNavigate } from "react-router-dom";
-import { ProductsProps } from "../../../utils/interfaces/productInterfaces";
+import { DBProduct, ProductsPropsIndexable } from "../../../utils/interfaces/productInterfaces";
 import { getProducts } from "../../../utils/services/axiosRequests";
 
 function ProductDashboard() {
     
-    const [productList, setProductList] = useState([]);
-    const [search, setSearch] = useState("");
     const navigate = useNavigate();
-    const results = !search ? productList : productList.filter((product: ProductsProps)=> product.name.toLowerCase().includes(search.toLowerCase()))
-
+    const [productList, setProductList] = useState<ProductsPropsIndexable[]>([]);
+    const [search, setSearch] = useState<string>("");
+    const results = !search ? productList : productList.filter((product: DBProduct)=> product.name.toLowerCase().includes(search.toLowerCase()))
+    const [sortAscending, setSortAscending] = useState<boolean>(true);
+    
     useEffect ( () => {
         getProductList();
     }, [])
-    
+
     const getProductList = async () => {
         const response = await getProducts();
         setProductList(response.data)
     }
 
-    const handleEditClick = (product: ProductsProps) => {
+    const handleEditClick = (product: DBProduct) => {
         navigate(`/admin/products/${product.id}`, { state: { product } });
     };
     
@@ -34,34 +35,49 @@ function ProductDashboard() {
         setSearch(event.target.value)
     }
 
+    const orderBy = (property: keyof ProductsPropsIndexable) => {
+        setSortAscending(!sortAscending);
+        productList.sort((a, b) => {
+            if (sortAscending) {
+                return a[property] > b[property] ? 1 : -1;
+            } else {
+                return b[property] > a[property] ? 1 : -1;
+            }
+        });
+    };
+
     return (
         <Fragment>
             <NavbarHandler/>
-            <div className="filter_container">
-                <button type="button" onClick={() => handleCreateClick()} className="create_product_button">Create Product</button>
-                <input value={search} type="text" placeholder="Search by name" onChange={searcher} className="filter_input"/>
+            <div className="head_dashboard">
+                <div className="button_container_dashboard">
+                    <button type="button" onClick={() => handleCreateClick()} className="button_create_dashboard">Create</button>
+                </div>
+                <div className="filter_container_dashboard">
+                    <input value={search} type="text" placeholder="Search by name" onChange={searcher} className="input_filter_dashboard"/>
+                </div>
             </div>
-            <table className="table_product">
-                <thead>
+            <table className="table_admin">
+                <thead className="thead_admin">
                     <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>DESCRIPTION</th>
-                        <th>PRICE</th>
-                        <th>STOCK</th>
-                        <th>AVAILABLE</th>
+                        <th className="th_admin"><button onClick={() => orderBy("id")} type="button" className="button_orderBy_dashboard">ID</button></th>
+                        <th className="th_admin"><button onClick={() => orderBy("name")} type="button" className="button_orderBy_dashboard">NAME</button></th>
+                        <th className="th_admin">DESCRIPTION</th>
+                        <th className="th_admin"><button onClick={() => orderBy("price")} type="button" className="button_orderBy_dashboard">PRICE</button></th>
+                        <th className="th_admin"><button onClick={() => orderBy("stock")} type="button" className="button_orderBy_dashboard">STOCK</button></th>
+                        <th className="th_admin"><button onClick={() => orderBy("isAvailable")} type="button" className="button_orderBy_dashboard">AVAILABLE</button></th>
                     </tr>
                 </thead>
-                <tbody>
-                    {results.map((product: ProductsProps) => (
-                        <tr key={product.id}>
-                            <td className="td_product">{product.id}</td>
-                            <td className="td_product">{product.name}</td>
-                            <td className="td_product">{product.description}</td>
-                            <td className="td_product">{`${product.price} $`}</td>
-                            <td className="td_product">{`${product.stock} u.`}</td>
-                            <td className="td_product">{`${product.isAvailable}`}</td>
-                            <td className="td_product_button"><button type="button" onClick={() => handleEditClick(product)} className="modify_product_button">EDIT</button></td>
+                <tbody className="tbody_admin">
+                    {results.map((product: DBProduct) => (
+                        <tr className="tr_admin" key={product.id}>
+                            <td className="td_admin_id">{product.id}</td>
+                            <td className="td_admin">{product.name}</td>
+                            <td className="td_admin">{product.description}</td>
+                            <td className="td_admin">{`$${product.price}`}</td>
+                            <td className="td_admin">{`${product.stock} u.`}</td>
+                            <td className="td_admin">{`${product.isAvailable}`}</td>
+                            <td className="td_admin_button"><button type="button" onClick={() => handleEditClick(product)} className="button_edit_dashboard">EDIT</button></td>
                         </tr>
                     ))}
                 </tbody>

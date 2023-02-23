@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import LogButtonOption from "./logButtonOption";
+import { UserProfile } from "../profile/userProfile";
 
 const UserNavBar = () => {
   return (
@@ -16,6 +17,7 @@ const UserNavBar = () => {
           Menu
         </NavLink>
         <LogButtonOption />
+        <UserProfile />
       </div>
     </div>
   );

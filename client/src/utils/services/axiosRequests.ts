@@ -1,6 +1,6 @@
 import axios from "axios";
 import { DBProduct } from "../interfaces/productInterfaces";
-import User from "../interfaces/IUserLogin";
+import { UserLogin, UserRegister } from "../interfaces/userInterfaces";
 
 const token = localStorage.getItem("token");
 const config = {
@@ -9,9 +9,14 @@ const config = {
   },
 };
 
-export const getUserList: Function = async () => {
-  const { data } = await axios.get("/api/users", config);
-  return data;
+export const getProducts = async () => {
+  const response = await axios.get('/api/products')
+  return response;
+};
+
+export const getUsers = async () => {
+  const response = await axios.get("/api/users", config);
+  return response;
 };
 
 export const deleteUser: Function = async (id: number) => {
@@ -23,7 +28,8 @@ export const postProduct: Function = async (product: DBProduct) => {
 };
 
 export const patchProduct: Function = async (product: DBProduct, id:number) => {
-  await axios.patch(`/api/products/${id}`, product, config);
+  const response = await axios.patch(`/api/products/${id}`, product, config);
+  return response;
 };
 
 export const deleteProduct: Function = async (id: number) => {
@@ -31,14 +37,19 @@ export const deleteProduct: Function = async (id: number) => {
   return response
 }
 
-export const loginUser: Function = async (user: User) => {
+export const loginUser: Function = async (user: UserLogin) => {
   const { data } = await axios.post(`/api/login`, user);
   if (!data.token) throw new Error("Invalid email or password.");
   localStorage.setItem("token", data.token);
   return token;
 };
 
-export const getProducts = async () => {
-  const response = await axios.get('/api/products')
-  return response;
+export const registerUser: Function = async (user: UserRegister)  => {
+  const response = await axios.post(`/api/register`, user);
+  if (response.data.token){
+    return response.data.token;
+  } else {
+    throw new Error("Error in the registerUser method");
+  }
 };
+

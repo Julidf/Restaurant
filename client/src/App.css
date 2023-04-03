@@ -68,6 +68,10 @@ body {
   flex-direction: column;
 }
 
+h3{
+  font-size: 2rem;
+}
+
 .form__container{
   display: flex;
   flex-direction: column;
@@ -77,11 +81,6 @@ body {
   width: 90%;
   height: 80%;
   object-fit: cover;
-  margin-top: 30px;
-}
-
-h3{
-  font-size: 2rem;
 }
 
 .form__label {
@@ -89,6 +88,7 @@ h3{
   flex-direction: column;
   margin: 0.5rem 0;
   color: white;
+  text-align: left;
 }
 
 .form__input {
@@ -96,6 +96,10 @@ h3{
   padding: 0.5rem 1rem;
   color: black;
   border-radius: 5px;
+  outline: none;
+  font-size:16px;
+  border-radius: 3px;
+  border: 1px solid #c2c8d0;
 }
 
 #textarea{
@@ -104,20 +108,23 @@ h3{
 }
 
 .form__error {
-  margin: 0.5rem 0;
   color: orangered;
 }
 
 .btn {
   margin: 0.5rem 0;
-  padding: 0.5rem 0;
+  padding: 0.5rem 0.5rem;
   background-color: rgba(68, 1, 1, 0.447);
-  align-items: center;
-  text-align: center;
   border: 1px solid black;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: rgba(255, 166, 0, 0.379);
+  color:white;
+  cursor: pointer;
 }
 
 a {
@@ -125,18 +132,9 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
-a:link, a:visited, a:active {
-  color:white;
-}
 
 a:hover {
-  color: rgb(77, 76, 76);
-}
-
-.btn:hover {
-  background-color: rgba(255, 166, 0, 0.379);
-  color:white;
-  cursor: pointer;
+  color: rgb(121, 73, 73);
 }
 
 .nav__container {

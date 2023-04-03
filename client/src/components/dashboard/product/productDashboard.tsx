@@ -18,8 +18,7 @@ function ProductDashboard() {
     }, [])
 
     const getProductList = async () => {
-        const response = await getProducts();
-        setProductList(response.data)
+        const response = await getProducts().then((response) => setProductList(response.data) );
     }
 
     const handleEditClick = (product: DBProduct) => {

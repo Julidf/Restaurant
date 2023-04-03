@@ -4,6 +4,7 @@ import { userLoginHandleSubmit } from "../../utils/helpers";
 import { UserLogin } from "../../utils/interfaces/userInterfaces";
 import validation from "../../utils/validations/loginValidation";
 import { useAuth } from "../navbar/useAuth";
+import './loginStyle.css';
 
 export default function LoginForm() {
   
@@ -29,56 +30,63 @@ export default function LoginForm() {
       validationSchema={validation}
     >
       {({ handleSubmit, values, handleChange, validateOnChange }) => (
-        <div className="form__container">
-          <h3>Welcome back!</h3>
-          <Form className="form" onSubmit={handleSubmit}>
-            <label htmlFor="email" className="form__label">
-              Email:
-              <Field
-                type="email"
-                name="email"
-                placeholder="Insert email"
-                autoComplete="off"
-                className="form__input"
-                value={values.email}
-                onChange={handleChange}
-                validate={validateOnChange}
-              />
-              <ErrorMessage
-                name="email"
-                component="span"
-                className="form__error"
-              />
-            </label>
+        <div className="box_container_login">
+          <header>
+            <h1>Welcome back!</h1>
+          </header>
+          <div className="body_container_login">
+            <Form className="form" onSubmit={handleSubmit}>
+              <label htmlFor="email" className="form__label">
+                Email:
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="Insert email"
+                  autoComplete="off"
+                  className="form__input"
+                  value={values.email}
+                  onChange={handleChange}
+                  validate={validateOnChange}
+                />
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className="form__error"
+                />
+              </label>
 
-            <label htmlFor="password" className="form__label">
-              Password:
-              <Field
-                type="password"
-                name="password"
-                placeholder="Insert password"
-                className="form__input"
-                value={values.password}
-                onChange={handleChange}
-                validate={validateOnChange}
-              />
-              <ErrorMessage
-                name="password"
-                component="span"
-                className="form__error"
-              />
-            </label>
-
-            <button type="submit" className="btn">
-              Login
-            </button>
-            <Link to={"/register"} className="btn">
-              Register
-            </Link>
-            <button type="button" onClick={() => navigate(-1)} className="btn">
-              Cancel
-            </button>
-          </Form>
+              <label htmlFor="password" className="form__label">
+                Password:
+                <Field
+                  type="password"
+                  name="password"
+                  placeholder="Insert password"
+                  className="form__input"
+                  value={values.password}
+                  onChange={handleChange}
+                  validate={validateOnChange}
+                />
+                <ErrorMessage
+                  name="password"
+                  component="span"
+                  className="form__error"
+                />
+              </label>
+              <button type="submit" className="btn">
+                Login
+              </button>
+            </Form>
+            <div className="extras_container">
+              <p> Don't have an account?  
+                <Link to={"/register"} className="register_button">
+                  Register
+                </Link>
+              </p>
+            </div>
+              <button type="button" onClick={() => navigate(-1)} className="cancel_button_login">
+                X
+              </button>
+          </div>  
         </div>
       )}
     </Formik>

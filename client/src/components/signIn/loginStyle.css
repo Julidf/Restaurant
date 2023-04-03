@@ -1,0 +1,43 @@
+.box_container_login {
+  background-color: rgba(170, 172, 50, 0.301);
+  width: 340px;
+  height: 540px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 100px;
+  border-radius: 20px;
+  border: 1px solid black;
+  position: relative;  
+}
+
+.register_button {
+  color: rgb(68, 17, 38);
+  margin-left: 5px;
+}
+
+.body_container_login {
+  padding: 40px;
+}
+
+.cancel_button_login {
+  padding: 0.5rem 0.7rem;
+  color: rgba(68, 1, 1, 0.447);
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 0.5px solid rgba(0, 0, 0, 0.452);
+}
+
+.cancel_button_login:hover {
+  background-color: rgba(255, 166, 0, 0.379);
+  color:white;
+  cursor: pointer;
+}
+
+

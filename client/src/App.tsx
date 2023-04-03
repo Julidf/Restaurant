@@ -15,7 +15,6 @@ import { UserProfile } from "./components/profile/userProfile";
 
 function App() {
   return (
-      <Wrapper>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/menu" element={<Menu />} />
@@ -31,9 +30,7 @@ function App() {
             <Route path="/admin/users" element={<UserDashboard /> } />
             <Route path="/admin/orders" element={<CreateProduct />} />
           </Route>
-
         </Routes>
-      </Wrapper>
   );
 }
 

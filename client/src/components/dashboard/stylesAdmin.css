@@ -5,6 +5,7 @@
 /* TABLE THINGS */
 
 .table_admin {
+  margin: auto;
   border-collapse: collapse;
   width: 98%;
 }
